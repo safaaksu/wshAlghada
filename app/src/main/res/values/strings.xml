@@ -8,4 +8,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="homebutton">Button</string>
     <string name="FavoriteButton">Button</string>
+    <string name="home">home</string>
+    <string name="HomeButton">Button</string>
 </resources>
