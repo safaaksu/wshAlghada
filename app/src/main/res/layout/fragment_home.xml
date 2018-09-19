@@ -13,7 +13,16 @@
         android:layout_alignParentTop="true"
         android:layout_marginEnd="36dp"
         android:layout_marginTop="79dp"
-        android:text="@string/hello_blank_fragment"
+        android:text="@string/home"
         tools:text="Home" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="122dp"
+        android:text="@string/HomeButton" />
 
 </RelativeLayout>
