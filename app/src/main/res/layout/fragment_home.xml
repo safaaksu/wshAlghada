@@ -23,6 +23,6 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="122dp"
-        android:text="@string/HomeButton" />
+        android:text="@string/homebutton" />
 
 </RelativeLayout>

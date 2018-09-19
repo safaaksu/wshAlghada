@@ -1,13 +1,16 @@
 <resources>
-    <string name="app_name">wshAlghada</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
+
+<string name="app_name">وش الغدا؟</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="homebutton">Button</string>
     <string name="FavoriteButton">Button</string>
     <string name="home">home</string>
     <string name="HomeButton">Button</string>
+    <string name="logo">logo</string>
+    <string name="الرئيسية">الرئيسية</string>
+    <string name="المفضلة">المفضلة</string>
+    <string name="البحث">البحث</string>
+    <string name="ملف_التعريف">ملف التعريف</string>
 </resources>
