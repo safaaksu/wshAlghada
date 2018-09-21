@@ -1,7 +1,7 @@
 <resources>
 
 
-<string name="app_name">وش الغدا؟</string>
+    <string name="app_name">وش الغدا؟</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="homebutton">Button</string>
@@ -18,4 +18,40 @@
     <string name="item1">وصفاتي</string>
     <string name="item2">اضافة وصفه</string>
     <string name="item3">تسجيل الخروج</string>
+
+
+
+    <string name="email2">البريد الإلكتروني</string>
+    <string name="emailPlease">الرجاء إدخال بريدك الإلكتروني المسجل</string>
+    <string name="send">إرسال</string>
+    <string name="restore2">استعادة كلمة المرور</string>
+    <string name="enter1">دخول</string>
+    <string name="required1">حقول مطلوبة *</string>
+    <string name="username1">اسم المستخدم</string>
+    <string name="password1">كلمة المرور</string>
+    <string name="enter3">دخول</string>
+    <string name="haventAcc">ليس لديك حساب؟</string>
+    <string name="login">تسجيل</string>
+    <string name="forgetPass">نسيت كلمة المرور؟</string>
+    <string name="clickHere">اضغط هنا</string>
+    <string name="star1">*</string>
+    <string name="star2">*</string>
+    <string name="theRegister">التسجيل</string>
+    <string name="required2">حقول مطلوبة *</string>
+    <string name="username2">اسم المستخدم</string>
+    <string name="displayName">اسم العرض</string>
+    <string name="email1">البريد الإلكتروني</string>
+    <string name="password2">كلمة المرور</string>
+    <string name="surePass">تأكيد كلمة المرور</string>
+    <string name="register">تسجيل</string>
+    <string name="restore1">إعادة تعيين</string>
+    <string name="haveAcc">لديك حساب؟</string>
+    <string name="enter2">دخول</string>
+    <string name="star3">*</string>
+    <string name="star4">*</string>
+    <string name="star5">*</string>
+    <string name="star6">*</string>
+    <string name="star7">*</string>
+
+
 </resources>
