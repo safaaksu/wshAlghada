@@ -13,4 +13,9 @@
     <string name="المفضلة">المفضلة</string>
     <string name="البحث">البحث</string>
     <string name="ملف_التعريف">ملف التعريف</string>
+    <string name="menu">القائمة</string>
+    <string name="username">Safaa Mohammed</string>
+    <string name="item1">وصفاتي</string>
+    <string name="item2">اضافة وصفه</string>
+    <string name="item3">تسجيل الخروج</string>
 </resources>
