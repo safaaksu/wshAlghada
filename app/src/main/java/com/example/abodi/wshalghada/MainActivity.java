@@ -55,8 +55,9 @@ return false;
         setContentView(R.layout.activity_main);
 
     mDrawerLayout = findViewById(R.id.drawer_layout);
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(this);
+       BottomNavigationView navigation = findViewById(R.id.navigation);
+    BottomNavigationViewHelper.disableShiftMode(navigation);
+    navigation.setOnNavigationItemSelectedListener(this);
         loadFragment(new HomeFragment());
 
     ImageButton sidemenu =findViewById(R.id.sidemenu);

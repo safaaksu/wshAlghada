@@ -51,40 +51,10 @@
     <string name="star5">*</string>
     <string name="star6">*</string>
     <string name="star7">*</string>
-
-    <string name="popular">أشهر الوصفات</string>
-    <string name="chosen">اخترنا لك</string>
-    <string name="myFavorite">مفضلتي</string>
-    <string name="rName1">اسم الوصفة</string>
-    <string name="rName2">اسم الوصفة</string>
-    <string name="rName3">اسم الوصفة</string>
-    <string name="rName4">اسم الوصفة</string>
-    <string name="rName5">اسم الوصفة</string>
-    <string name="rName6">اسم الوصفة</string>
-    <string name="rName7">اسم الوصفة</string>
-    <string name="rName8">اسم الوصفة</string>
-    <string name="rName9">اسم الوصفة</string>
-    <string name="rName10">اسم الوصفة</string>
-    <string name="rName11">اسم الوصفة</string>
-    <string name="rName12">اسم الوصفة</string>
-    <string name="rName13">اسم الوصفة</string>
-    <string name="rName14">اسم الوصفة</string>
-    <string name="rName15">اسم الوصفة</string>
-    <string name="rName16">اسم الوصفة</string>
-    <string name="rName17">اسم الوصفة</string>
-    <string name="rName18">اسم الوصفة</string>
-    <string name="rName19">اسم الوصفة</string>
-    <string name="rName20">اسم الوصفة</string>
-    <string name="rName21">اسم الوصفة</string>
-    <string name="rName22">اسم الوصفة</string>
-    <string name="rName23">اسم الوصفة</string>
-    <string name="rName24">اسم الوصفة</string>
-    <string name="rName25">اسم الوصفة</string>
-    <string name="rName26">اسم الوصفة</string>
-    <string name="rName27">اسم الوصفة</string>
-    <string name="rName28">اسم الوصفة</string>
-    <string name="rName29">اسم الوصفة</string>
-    <string name="rName30">اسم الوصفة</string>
+    <string name="popular">اشهر الوصفات</string>
+    <string name="recommended">اخترنا لك</string>
+    <string name="favourite">مفضلتك</string>
+    <string name="recipeName">أسم الوصفه</string>
 
 
 </resources>
