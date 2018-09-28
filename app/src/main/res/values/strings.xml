@@ -1,7 +1,7 @@
 <resources>
 
 
-<string name="app_name">وش الغدا؟</string>
+    <string name="app_name">وش الغدا؟</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="homebutton">Button</string>
@@ -13,4 +13,81 @@
     <string name="المفضلة">المفضلة</string>
     <string name="البحث">البحث</string>
     <string name="ملف_التعريف">ملف التعريف</string>
+
+    <string name="Rname">اسم الوصفة</string>
+    <string name="button">Button</string>
+    <string name="switch1">إظهار الوصفات التي تحتوي على هذه المكونات فقط</string>
+
+    <string name="todo">TODO</string>
+    <string name="buttton1">اذهب</string>
+    <string name="button3">تصفح الوصفات</string>
+    <string name="button2">الاسم</string>
+    <string name="button1">المكونات</string>
+    <string name="Vege">الخضراوات</string>
+    <string name="Meat">اللحوم</string>
+    <string name="أذهب">اذهب</string>
+    <string name="Fruit">الفواكة</string>
+    <string name="tVege">خضار</string>
+    <string name="tMeat">لحوم</string>
+    <string name="go">اذهب</string>
+    <string name="Egg_with_milk">البيض بالحليب</string>
+    <string name="by">بواسطة:</string>
+    <string name="name">روان</string>
+    <string name="date">بتاريخ:</string>
+    <string name="_24_09_2018">24/09/2018</string>
+    <string name="ing">المقادير:</string>
+
+    <string name="All_ing">هنا تكون جميع المقادير.</string>
+    <string name="steps">الطريقة:</string>
+    <string name="steps_desc">هنا تعرض الطريقة.</string>
+
+    <string name="Add_to_fav">إضافة الى مفضلتي</string>
+
+    <string name="تكفي">تكفي:</string>
+    <string name="العدد">4</string>
+    <string name="أشخاص">أشخاص</string>
+    <string name="وقت_التحضير">وقت التحضير:</string>
+    <string name="_20">20 دقيقة</string>
+
+    <string name="فواكة">فواكة</string>
+    <string name="تصفح_الوصفات">تصفح الوصفات:</string>
+
+    <string name="غداء">غداء</string>
+    <string name="فطور">فطور</string>
+
+    <string name="عشاء">عشاء</string>
+
+    <string name="مشروبات">مشروبات</string>
+    <string name="r1">TextView</string>
+    <string name="r2">TextView</string>
+    <string name="r3">TextView</string>
+    <string name="s">البحث بواسطة</string>
+    <string name="s2">البحث بواسطة المكون</string>
+    <string name="s3">اسم الوصفة</string>
+
+
+    <string-array name="Category">
+        <item>القسم</item>
+        <item>غداء</item>
+        <item>عشاء</item>
+        <item>فطور</item>
+        <item>مشروبات</item>
+    </string-array>
+    <string-array name="Cuisine">
+        <item>القسم</item>
+        <item>شعبي</item>
+        <item>ايطالي</item>
+        <item>فرنسي</item>
+    </string-array>
+    <string-array name="CookingTime">
+        <item>وقت التحضير</item>
+        <item>5/10 دقائق</item>
+        <item>10/15 دقيقة</item>
+        <item>15/30 دقيقة</item>
+        <item>30/50 دقيقة</item>
+        <item>50/70 دقيقة</item>
+        <item>70/100 دقيقة</item>
+        <item>100/120 دقيقة</item>
+    </string-array>
+
 </resources>
