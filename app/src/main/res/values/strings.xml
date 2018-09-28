@@ -56,5 +56,43 @@
     <string name="favourite">مفضلتك</string>
     <string name="recipeName">أسم الوصفه</string>
 
+    <string-array name="sections">
+        <item>اختر القسم</item>
+        <item>فطور</item>
+        <item>غداء</item>
+        <item>عشاء</item>
+        <item>مقبلات</item>
+        <item>حلويات</item>
+        <item>مشروبات</item>
+    </string-array>
 
+    <string-array name="ingredients">
+        <item>اختر المكون</item>
+        <item>طحين</item>
+        <item>جبن</item>
+        <item>بيض</item>
+    </string-array>
+
+    <string-array name="quantity">
+        <item>اختر المقياس</item>
+    </string-array>
+
+    <string-array name="meat">
+        <item>لحوم</item>
+        <item>أسماك</item>
+        <item>دواجن</item>
+        <item>بيض</item>
+    </string-array>
+
+    <string-array name="egg">
+        <item>بيض</item>
+        <item>طحين</item>
+        <item>جبن</item>
+        <item>ذرة</item>
+    </string-array>
+
+    <string-array name="nothing">
+        <item>لاشيء</item>
+
+    </string-array>
 </resources>
