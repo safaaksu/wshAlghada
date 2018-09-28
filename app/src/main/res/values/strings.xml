@@ -90,4 +90,86 @@
         <item>100/120 دقيقة</item>
     </string-array>
 
+    <string name="menu">القائمة</string>
+    <string name="username">Safaa Mohammed</string>
+    <string name="item1">وصفاتي</string>
+    <string name="item2">اضافة وصفه</string>
+    <string name="item3">تسجيل الخروج</string>
+
+
+    <string name="email2">البريد الإلكتروني</string>
+    <string name="emailPlease">الرجاء إدخال بريدك الإلكتروني المسجل</string>
+    <string name="send">إرسال</string>
+    <string name="restore2">استعادة كلمة المرور</string>
+    <string name="enter1">دخول</string>
+    <string name="required1">حقول مطلوبة *</string>
+    <string name="username1">اسم المستخدم</string>
+    <string name="password1">كلمة المرور</string>
+    <string name="enter3">دخول</string>
+    <string name="haventAcc">ليس لديك حساب؟</string>
+    <string name="login">تسجيل</string>
+    <string name="forgetPass">نسيت كلمة المرور؟</string>
+    <string name="clickHere">اضغط هنا</string>
+    <string name="star1">*</string>
+    <string name="star2">*</string>
+    <string name="theRegister">التسجيل</string>
+    <string name="required2">حقول مطلوبة *</string>
+    <string name="username2">اسم المستخدم</string>
+    <string name="displayName">اسم العرض</string>
+    <string name="email1">البريد الإلكتروني</string>
+    <string name="password2">كلمة المرور</string>
+    <string name="surePass">تأكيد كلمة المرور</string>
+    <string name="register">تسجيل</string>
+    <string name="restore1">إعادة تعيين</string>
+    <string name="haveAcc">لديك حساب؟</string>
+    <string name="enter2">دخول</string>
+    <string name="star3">*</string>
+    <string name="star4">*</string>
+    <string name="star5">*</string>
+    <string name="star6">*</string>
+    <string name="star7">*</string>
+    <string name="popular">اشهر الوصفات</string>
+    <string name="recommended">اخترنا لك</string>
+    <string name="favourite">مفضلتك</string>
+    <string name="recipeName">أسم الوصفه</string>
+
+    <string-array name="sections">
+        <item>اختر القسم</item>
+        <item>فطور</item>
+        <item>غداء</item>
+        <item>عشاء</item>
+        <item>مقبلات</item>
+        <item>حلويات</item>
+        <item>مشروبات</item>
+    </string-array>
+
+    <string-array name="ingredients">
+        <item>اختر المكون</item>
+        <item>طحين</item>
+        <item>جبن</item>
+        <item>بيض</item>
+    </string-array>
+
+    <string-array name="quantity">
+        <item>اختر المقياس</item>
+    </string-array>
+
+    <string-array name="meat">
+        <item>لحوم</item>
+        <item>أسماك</item>
+        <item>دواجن</item>
+        <item>بيض</item>
+    </string-array>
+
+    <string-array name="egg">
+        <item>بيض</item>
+        <item>طحين</item>
+        <item>جبن</item>
+        <item>ذرة</item>
+    </string-array>
+
+    <string-array name="nothing">
+        <item>لاشيء</item>
+
+    </string-array>
 </resources>

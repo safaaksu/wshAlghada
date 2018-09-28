@@ -4,11 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    private DrawerLayout mDrawerLayout;
 
 
 private boolean loadFragment(Fragment fr){
@@ -51,10 +56,22 @@ return false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(this);
+    mDrawerLayout = findViewById(R.id.drawer_layout);
+       BottomNavigationView navigation = findViewById(R.id.navigation);
+    BottomNavigationViewHelper.disableShiftMode(navigation);
+    navigation.setOnNavigationItemSelectedListener(this);
         loadFragment(new HomeFragment());
+
+    ImageButton sidemenu =findViewById(R.id.sidemenu);
+    sidemenu.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mDrawerLayout.openDrawer(GravityCompat.END);
+        }
+    });
+
+
+
 
     }
 
