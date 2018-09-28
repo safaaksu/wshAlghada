@@ -21,6 +21,10 @@
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".RestorePassword"></activity>
+        <activity android:name=".EditRecipe" />
+        <activity android:name=".AddRecipe" />
+        <activity android:name=".EditProfile1" />
+        <activity android:name=".AddedRecipe" />
     </application>
 
 </manifest>
