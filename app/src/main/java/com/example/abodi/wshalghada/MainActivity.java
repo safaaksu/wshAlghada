@@ -62,6 +62,7 @@ return false;
     navigation.setOnNavigationItemSelectedListener(this);
         loadFragment(new HomeFragment());
 
+
     ImageButton sidemenu =findViewById(R.id.sidemenu);
     sidemenu.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -69,6 +70,10 @@ return false;
             mDrawerLayout.openDrawer(GravityCompat.END);
         }
     });
+
+
+
+ 
 
 
 
