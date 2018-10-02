@@ -1,4 +1,4 @@
-package com.example.abodi.wshalghada;
+package com.example.wshalghada;
 
 import org.junit.Test;
 
