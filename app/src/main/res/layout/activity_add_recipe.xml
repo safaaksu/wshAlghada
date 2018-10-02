@@ -11,12 +11,10 @@
         android:id="@+id/imageView"
         android:layout_width="240dp"
         android:layout_height="115dp"
-        android:layout_marginBottom="124dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginRight="72dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="7dp"
+        android:layout_marginEnd="72dp"
+        android:contentDescription="@string/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,34 +24,30 @@
         android:id="@+id/imageButton"
         android:layout_width="38dp"
         android:layout_height="38dp"
-        android:layout_marginBottom="1dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginLeft="313dp"
-        android:layout_marginRight="32dp"
         android:layout_marginStart="313dp"
         android:layout_marginTop="121dp"
+        android:layout_marginEnd="32dp"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/button"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/back" />
 
     <ScrollView
         android:layout_width="356dp"
-        android:layout_height="319dp"
-        android:layout_marginLeft="12dp"
+        android:layout_height="373dp"
         android:layout_marginStart="12dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="189dp">
@@ -63,7 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:layout_marginBottom="10dp"
-                android:text="اضافة وصفة جديدة"
+                android:contentDescription="@string/AddNewRecipe"
+                android:text="@string/addNewRecipe"
                 android:textSize="24sp"
                 tools:layout_editor_absoluteX="178dp"
                 tools:layout_editor_absoluteY="189dp" />
@@ -73,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="26dp"
                 android:layout_marginBottom="20dp"
-                android:text="حقول مطلوبة *"
+                android:contentDescription="@string/Necessary"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="246dp"
@@ -95,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="المكونات:"
+                android:text="@string/Ingredients"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="296dp"
                 tools:layout_editor_absoluteY="335dp" />
@@ -104,7 +99,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="المكون١"
+                android:text="@string/Ingredient1"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="305dp"
                 tools:layout_editor_absoluteY="369dp" />
@@ -145,18 +140,18 @@
                     android:id="@+id/editText"
                     android:layout_width="38dp"
                     android:layout_height="38dp"
-                    android:layout_marginLeft="260dp"
+                    android:layout_marginStart="260dp"
                     android:ems="10"
-                    android:textSize="18sp"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="18sp"
-                    android:text="الكمية:" />
+                    android:text="@string/Quantity"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -164,19 +159,20 @@
                 android:id="@+id/imageButton2"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="300dp"
+                android:layout_marginStart="300dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/button"
                 android:scaleType="fitXY"
-        />
+                tools:src="@drawable/add" />
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="خطوات التخضير:"
+                android:text="@string/Steps"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -197,37 +193,39 @@
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
-                    android:textSize="18sp"
-                    android:text="1" />
+                    android:layout_weight="1"
+                    android:text="@string/_1"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <ImageButton
                 android:id="@+id/imageButton4"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="300dp"
+                android:layout_marginStart="300dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/button"
                 android:scaleType="fitXY"
-              />
+                android:src="@drawable/add" />
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="صورة الوصفة:"
+                android:text="@string/image"
                 android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/imageButton5"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="200dp"
+                android:layout_marginStart="200dp"
                 android:layout_marginBottom="20dp"
+                android:contentDescription="@string/button"
                 android:scaleType="fitXY"
                 app:srcCompat="@android:drawable/ic_input_add" />
 
@@ -238,11 +236,11 @@
 
                 <TextView
                     android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:layout_weight="1"
-                    android:text="وقت التحضير:"
+                    android:text="@string/Time"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -253,11 +251,11 @@
 
                 <TextView
                     android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:layout_weight="1"
-                    android:text="تكفي:"
+                    android:text="@string/suffice"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -271,21 +269,21 @@
                     android:id="@+id/button"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent"
-                    android:text="اعادة التعيين "
+                    android:background="@color/color1"
+                    android:text="@string/Reset"
                     android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/button2"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_weight="1"
                     android:layout_width="50dp"
-                    android:background="@color/colorAccent"
-                    android:text="اضافة"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/color1"
+                    android:text="@string/add"
                     android:textSize="20sp" />
             </LinearLayout>
 
