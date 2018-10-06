@@ -1,21 +1,35 @@
 package com.example.abodi.wshalghada;
 
-import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.Context;
 import android.content.Intent;
-import java.sql.*;
-import android.support.design.widget.TextInputEditText;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Button;
-import com.example.abodi.wshalghada.DBConnection;
-public class Login extends AppCompatActivity {
+import android.widget.EditText;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+public class Login extends AppCompatActivity {
 
     ResultSet resultSet = null;
     String userNameDB = "root";
     String passwordDB = "";
+    static final String username="Username";
+    static SharedPreferences getSharedPreferences(Context context){
+        return PreferenceManager.getDefaultSharedPreferences(context);
+    }
+
+    public static String getUserID(Context applicationContext) {
+        return getSharedPreferences(applicationContext).getString(username, "");
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +47,8 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 EditText UserName=(EditText) findViewById(R.id.username1);
                 EditText Password=(EditText) findViewById(R.id.password1);
-                 String userName= UserName.getText().toString();
-                 String password= Password.getText().toString();
+                String userName= UserName.getText().toString();
+                String password= Password.getText().toString();
 
                 try
                 {
@@ -66,17 +80,6 @@ public class Login extends AppCompatActivity {
                 }
 
             }
-
-
-
-
-
-
-
-
-
-
-
 
         });
     }
