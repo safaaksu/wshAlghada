@@ -179,6 +179,7 @@ public class EditProfile1 extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void reset(View view) {
         DisplayName.setText("");
         email.setText("");

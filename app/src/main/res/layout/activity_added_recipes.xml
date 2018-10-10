@@ -29,6 +29,7 @@
         android:layout_marginEnd="32dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/button"
+        android:onClick="back"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -58,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="180dp"
                 android:background="@color/color1"
+                android:onClick="addNewRecipe"
                 android:text="@string/AddNewRecipe"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="45dp"
@@ -83,7 +85,7 @@
                 android:layout_height="135dp"
                 android:orientation="horizontal">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/imageView2"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
