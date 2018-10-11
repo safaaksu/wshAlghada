@@ -23,7 +23,6 @@ public class EditProfile1 extends AppCompatActivity {
     private EditText Password;
     private EditText Password1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
