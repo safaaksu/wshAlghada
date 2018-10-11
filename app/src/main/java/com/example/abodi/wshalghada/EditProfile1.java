@@ -49,10 +49,10 @@ public class EditProfile1 extends AppCompatActivity {
             Class.forName("com.mysql.jdbc.Driver");
 
             con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
-            userid = Login.getUserID(getApplicationContext());
+
 
             stmt = con.createStatement();
-            sql = "SELECT * FROM User WHERE Username=" + Login.getUserID(getApplicationContext());
+            sql = "SELECT * FROM User WHERE Username='safa'";
             ResultSet resultSet  = stmt.executeQuery(sql);
 
             while (resultSet.next()) {
@@ -95,7 +95,7 @@ public class EditProfile1 extends AppCompatActivity {
                 Class.forName("com.mysql.jdbc.Driver");
 
                 con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
-                userid = Login.getUserID(getApplicationContext());
+
 
                 stmt = con.createStatement();
                 sql = "UPDATE User SET Username = ('"+username+"'), DisplayName = ('"+displayname+"'), Eamil = ('"+email+"'), Password = ('"+pass+"')";

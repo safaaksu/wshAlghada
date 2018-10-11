@@ -1,16 +1,21 @@
 package com.example.abodi.wshalghada;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 
 
@@ -24,10 +29,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     //vars
     private ArrayList<String> mNames ;
-    private ArrayList<String> mImageUrls;
+    private ArrayList<byte[]> mImageUrls;
     private Context mContext;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> names, ArrayList<String> imageUrls) {
+    public RecyclerViewAdapter(Context context, ArrayList<String> names, ArrayList<byte[]> imageUrls) {
         mNames = names;
         mImageUrls = imageUrls;
         mContext = context;
@@ -44,11 +49,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: called.");
 
       Glide.with(mContext)
-             .asBitmap()
-               .load(mImageUrls.get(position))
+             .asBitmap().load(mImageUrls.get(position))
               .into(holder.image);
 
         holder.name.setText(mNames.get(position));
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: clicked on: " + mImageUrls.get(position));
+
+                Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(mContext, Login.class);
+                intent.putExtra("image_url", mImageUrls.get(position));
+                intent.putExtra("image_name", mNames.get(position));
+                mContext.startActivity(intent);
+            }
+        });
+
 
 
     }
@@ -58,15 +76,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mImageUrls.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView image;
         TextView name;
+        RelativeLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image_view);
             name = itemView.findViewById(R.id.name);
+            parentLayout = itemView.findViewById(R.id.parent_layout);
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 }

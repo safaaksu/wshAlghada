@@ -35,9 +35,10 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        UserName =  getView().findViewById(R.id.UserNameTV);
-        DisplayName =  getView().findViewById(R.id.DisplayNameTV);
-        email =  getView().findViewById(R.id.EmailTV);
+        View v=inflater.inflate(R.layout.fragment_profile, container, false);
+        UserName =  v.findViewById(R.id.UserNameTV);
+        DisplayName =  v.findViewById(R.id.DisplayNameTV);
+        email =  v.findViewById(R.id.EmailTV);
 
         DisplayInfo();
 
@@ -55,7 +56,7 @@ public class ProfileFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return v;
     }
 
     public void DisplayInfo(){
@@ -71,9 +72,9 @@ public class ProfileFragment extends Fragment {
             Connection con= DBConnection.createConnection(); //establishing connection
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            con = DriverManager.getConnection("jdbc:mysql://192.168.154.1/wshalghada","root",null);
+            con = DriverManager.getConnection("jdbc:mysql://172.20.10.14/wshalghada","root",null);
             Statement statement  = con.createStatement(); //Statement is used to write queries. Read more about it.
-            resultSet = statement.executeQuery("select * from user where Username"+username); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
+            resultSet = statement.executeQuery("select * from user where Username='"+username+"'"); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
             while(resultSet.next()) // Until next row is present otherwise it return false
             {
                 UserName.setText(resultSet.getString("Username"));

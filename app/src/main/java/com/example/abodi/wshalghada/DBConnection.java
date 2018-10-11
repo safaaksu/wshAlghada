@@ -10,7 +10,7 @@ public class DBConnection {
     public static final String password =null;
 
     public static Connection con;
-    private static String urlstring="jdbc:mysql://192.168.100.14/wshalghada";
+    private static String urlstring="jdbc:mysql://172.20.10.14/wshalghada";
 
     public static Connection createConnection() {
         try {

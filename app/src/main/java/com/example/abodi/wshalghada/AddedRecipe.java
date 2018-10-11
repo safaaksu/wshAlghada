@@ -37,7 +37,7 @@ public class AddedRecipe extends AppCompatActivity {
                 con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
 
                 stmt = con.createStatement();
-                sql = "SELECT * FROM Recipe WHERE Username=" + Login.getUserID(getApplicationContext());
+                sql = "SELECT * FROM Recipe WHERE Username='safa'";
                 ResultSet resultSet  = stmt.executeQuery(sql);
 
                 while (resultSet.next()) {
