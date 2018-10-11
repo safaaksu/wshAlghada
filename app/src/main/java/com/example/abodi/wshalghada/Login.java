@@ -50,7 +50,7 @@ public class Login extends AppCompatActivity {
                 String userName= UserName.getText().toString();
                 String password= Password.getText().toString();
 
-                try
+            /*    try
                 {
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection con= DBConnection.createConnection(); //establishing connection
