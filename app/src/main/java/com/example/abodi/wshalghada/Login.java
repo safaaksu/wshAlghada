@@ -50,14 +50,17 @@ public class Login extends AppCompatActivity {
                 String userName= UserName.getText().toString();
                 String password= Password.getText().toString();
 
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+                StrictMode.setThreadPolicy(policy);
                 try
                 {
                     Class.forName("com.mysql.jdbc.Driver");
-                    Connection con= DBConnection.createConnection(); //establishing connection
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                            .permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
-                    con = DriverManager.getConnection("jdbc:mysql://192.168.100.14/wshalghada","root",null);
+                    Connection con= DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password); //establishing connection
+                   // StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        //    .permitAll().build();
+                    //StrictMode.setThreadPolicy(policy);
+                    // con = DriverManager.getConnection("jdbc:mysql://192.168.100.14/wshalghada","root",null);
                     Statement statement  = con.createStatement(); //Statement is used to write queries. Read more about it.
                     resultSet = statement.executeQuery("select Username,Password from user"); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
                     while(resultSet.next()) // Until next row is present otherwise it return false
