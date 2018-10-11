@@ -1,9 +1,9 @@
 package com.example.abodi.wshalghada;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -24,12 +24,14 @@ public class ProfileFragment extends Fragment {
     private TextView DisplayName;
     private TextView email;
 
-
+    ResultSet resultSet = null;
+    String userNameDB = "root";
+    String passwordDB = "";
     public ProfileFragment() {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -57,36 +59,36 @@ public class ProfileFragment extends Fragment {
     }
 
     public void DisplayInfo(){
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+
         //setup connection
-        Connection con = null;
-        Statement stmt = null;
-        String username;
-        String sql;
-        try {
+
+
+        String username="safa";
+
+        try
+        {
             Class.forName("com.mysql.jdbc.Driver");
-
-            con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
-            //username=((Login)getActivity()).getApplicationContext();
-            username= "safa";
-            stmt = con.createStatement();
-            sql = "SELECT * FROM User WHERE Username=" + username;
-            ResultSet resultSet = stmt.executeQuery(sql);
-
-            while (resultSet.next()) {
+            Connection con= DBConnection.createConnection(); //establishing connection
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            con = DriverManager.getConnection("jdbc:mysql://192.168.154.1/wshalghada","root",null);
+            Statement statement  = con.createStatement(); //Statement is used to write queries. Read more about it.
+            resultSet = statement.executeQuery("select * from user where Username"+username); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
+            while(resultSet.next()) // Until next row is present otherwise it return false
+            {
                 UserName.setText(resultSet.getString("Username"));
                 DisplayName.setText(resultSet.getString("DisplayName"));
                 email.setText(resultSet.getString("Email"));
+                statement.close();
+                con.close();
             }
-            stmt.close();
-            con.close();
-        } catch (SQLException se) {
-            Toast.makeText(getActivity(),"يجب أن تكون متصلا ًبالانترنت!"+ se.getMessage(),Toast.LENGTH_SHORT).show();
+        }
 
-        } catch (Exception e) {
-            Toast.makeText(getActivity()," "+ e.getMessage(),Toast.LENGTH_SHORT).show();
-
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
