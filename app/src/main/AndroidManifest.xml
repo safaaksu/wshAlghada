@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.abodi.wshalghada">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,11 +22,12 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".RestorePassword"></activity>
+        <activity android:name=".RestorePassword" />
         <activity android:name=".EditRecipe" />
         <activity android:name=".AddRecipe" />
         <activity android:name=".EditProfile1" />
         <activity android:name=".AddedRecipe" />
+        <activity android:name=".DisplayReccipe"></activity>
     </application>
 
 </manifest>
