@@ -58,11 +58,10 @@ public class DisplayRecipe extends AppCompatActivity {
         String sql,sql1;
         List<String> IngredientList = null;
         try {
-            Class.forName(DBConnection.urlstring);
-
+            Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
-
             stmt = con.createStatement();
+
             /////////////////RecipeID
             sql = "SELECT * FROM Recipe  WHERE RecipeID =" + Login.getUserID(getApplicationContext());
             ResultSet resultSet = stmt.executeQuery(sql);
