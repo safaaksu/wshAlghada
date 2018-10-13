@@ -166,6 +166,7 @@
     <string name="_1">1</string>
     <string name="textview">TextView</string>
     <string name="noRecipe" />
+    <string name="email">البريد الالكتروني:</string>
 
     <string-array name="sections">
         <item>اختر القسم</item>
