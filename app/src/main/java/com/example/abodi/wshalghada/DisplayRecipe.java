@@ -1,6 +1,7 @@
 package com.example.abodi.wshalghada;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-public class DisplayReccipe extends AppCompatActivity {
+public class DisplayRecipe extends AppCompatActivity {
 
     private TextView recipeName;
     private TextView userName;
@@ -32,7 +33,7 @@ public class DisplayReccipe extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_reccipe);
+        setContentView(R.layout.activity_display_recipe);
 
         recipeName = (TextView) findViewById(R.id.recipeName);
         userName = (TextView) findViewById(R.id.userName);
@@ -57,7 +58,7 @@ public class DisplayReccipe extends AppCompatActivity {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
+            con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
 
             stmt = con.createStatement();
             /////////////////RecipeID
@@ -71,7 +72,7 @@ public class DisplayReccipe extends AppCompatActivity {
                 recipeName.setText(resultSet.getString("RecipeName"));
                 userName.setText(resultSet.getString("Username"));
                 dateON.setText(resultSet.getString("Date"));
-                //image.setImageBitmap(resultSet.getByte("Photo"));
+                image.setImageURI(Uri.parse(resultSet.getString("Photo")));
                 steps.setText(resultSet.getString("Instruction"));
                 serving.setText(resultSet.getString("NumOfServing"));
                 time.setText(resultSet.getString("CookingTime"));
@@ -86,11 +87,11 @@ public class DisplayReccipe extends AppCompatActivity {
             con.close();
         }
         catch (SQLException se){
-            Toast errorToast = Toast.makeText(DisplayReccipe.this, "يجب أن تكون متصلا ًبالانترنت "+se.getMessage() ,Toast.LENGTH_SHORT);
+            Toast errorToast = Toast.makeText(DisplayRecipe.this, "يجب أن تكون متصلا ًبالانترنت "+se.getMessage() ,Toast.LENGTH_SHORT);
             errorToast.show();
         }
         catch (Exception e){
-            Toast errorToast = Toast.makeText(DisplayReccipe.this, " "+e.getMessage() ,Toast.LENGTH_SHORT);
+            Toast errorToast = Toast.makeText(DisplayRecipe.this, " "+e.getMessage() ,Toast.LENGTH_SHORT);
             errorToast.show();
         }
     }
@@ -110,19 +111,28 @@ public class DisplayReccipe extends AppCompatActivity {
         String sql;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
+            con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
             stmt = con.createStatement();
-            /////////////////RecipeID
-            sql = "INSERT INTO Favor (Username, RecipeID) VALUES (" + Login.getUserID(getApplicationContext()) + "," + Login.getUserID(getApplicationContext()) + ");";
+
+            if(favorite.getBackground().equals(R.drawable.ic_heart)) {
+                /////////////////RecipeID
+                sql = "INSERT INTO Favor (Username, RecipeID) VALUES (" + Login.getUserID(getApplicationContext()) + "," + Login.getUserID(getApplicationContext()) + ");";
+                favorite.setBackgroundResource(R.drawable.fullHeart);
+            }
+            else{
+                /////////////////RecipeID
+                sql = "DELETE FROM Favor WHERE Username=" + Login.getUserID(getApplicationContext()) + "AND RecipeID=" + Login.getUserID(getApplicationContext()) + ";";
+                favorite.setBackgroundResource(R.drawable.ic_heart);
+            }
             stmt.close();
             con.close();
         }
         catch (SQLException se){
-            Toast errorToast = Toast.makeText(DisplayReccipe.this, "يجب أن تكون متصلا ًبالانترنت " ,Toast.LENGTH_SHORT);
+            Toast errorToast = Toast.makeText(DisplayRecipe.this, "يجب أن تكون متصلا ًبالانترنت " ,Toast.LENGTH_SHORT);
             errorToast.show();
         }
         catch (Exception e){
-            Toast errorToast = Toast.makeText(DisplayReccipe.this, " "+e.getMessage() ,Toast.LENGTH_SHORT);
+            Toast errorToast = Toast.makeText(DisplayRecipe.this, " "+e.getMessage() ,Toast.LENGTH_SHORT);
             errorToast.show();
         }
         favorite.setBackgroundResource(R.drawable.fullHeart);

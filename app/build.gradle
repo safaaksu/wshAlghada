@@ -38,4 +38,5 @@ dependencies {
 
     implementation 'mysql:mysql-connector-java:5.1.25'
 
+    implementation 'com.android.support:gridlayout-v7:27.1.1'
 }

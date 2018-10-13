@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -13,22 +13,17 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class AddedRecipe extends AppCompatActivity {
 
-    private TextView noRecipe;
-    private byte[] image;
-
-    //private ImageButton photo;
-    //private List<Recipe> recipeList;
+    private ImageButton photo;
+    private List<Recipe> recipeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_added_recipes);
-
-        noRecipe = (TextView) findViewById(R.id.textView48);
-        noRecipe.setVisibility(View.INVISIBLE);
 
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -38,24 +33,16 @@ public class AddedRecipe extends AppCompatActivity {
             String sql;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
+
                 con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
+
                 stmt = con.createStatement();
-                sql = "SELECT RecipeID, Photo FROM Recipe WHERE Username=" + Login.getUserID(getApplicationContext());
-                ResultSet resultSet = stmt.executeQuery(sql);
+                sql = "SELECT * FROM Recipe WHERE Username='safa'";
+                ResultSet resultSet  = stmt.executeQuery(sql);
 
-                //SQLiteDatabase DB = this.getWritableDatabase();
-               // Cursor cursor = DB.rawQuery("SELECT RecipeID, Photo FROM Recipe WHERE Username=" + Login.getUserID(getApplicationContext()));
-
-                if (resultSet == null){
-                    noRecipe.setVisibility(View.VISIBLE);
-                    noRecipe.setText("لا توجد وصفات مضافة ");
+                while (resultSet.next()) {
+                    //photo.setImage(resultSet.("Photo"));
                 }
-                else{
-                    while (resultSet.next()) {
-                        //photo.setImage(resultSet.("Photo"));
-                    }
-                }
-
                 stmt.close();
                 con.close();
             }

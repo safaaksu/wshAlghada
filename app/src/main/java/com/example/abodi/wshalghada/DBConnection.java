@@ -1,15 +1,13 @@
 package com.example.abodi.wshalghada;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DBConnection {
 
-    public static final String driverName = "com.mysql.jdbc.Driver";
-    public static final String username = "root";
-    public static final String password =null;
+    public static final String urlstring = "jdbc:mysql://mysql6001.site4now.net/db_a41b75_zyoonn";
+    public static final String username = "a41b75_zyoonn";
+    public static final String password = "ksu12345678";
 
-    public static Connection con;
+
+   /* public static Connection con;
     private static String urlstring="jdbc:mysql://192.168.100.14/wshalghada";
 
     public static Connection createConnection() {
@@ -27,4 +25,5 @@ public class DBConnection {
         }
         return con;
     }
+    */
 }
