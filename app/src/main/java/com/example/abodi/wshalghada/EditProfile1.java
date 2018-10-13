@@ -47,7 +47,7 @@ public class EditProfile1 extends AppCompatActivity {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
+            con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
 
 
             stmt = con.createStatement();
@@ -93,7 +93,7 @@ public class EditProfile1 extends AppCompatActivity {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
 
-                con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
+                con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
 
 
                 stmt = con.createStatement();
