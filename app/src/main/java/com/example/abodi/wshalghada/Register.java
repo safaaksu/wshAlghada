@@ -18,9 +18,6 @@ package com.example.abodi.wshalghada; //ok
 
 import java.lang.String;
 
-
-
-
     public class Register extends AppCompatActivity {
         public EditText Username = null;
         public EditText DisplayName= null;
@@ -37,7 +34,6 @@ import java.lang.String;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
 
-
             //check wifi connection
             isConnected();
             Username = ((EditText)findViewById(R.id.username2));
@@ -46,9 +42,6 @@ import java.lang.String;
             Password = ((EditText)findViewById(R.id.password2));
             Password2 = ((EditText)findViewById(R.id.surePass));
         }//ok
-
-
-
 
 
         public void Register(View view) {
@@ -139,8 +132,6 @@ import java.lang.String;
                     return false;
                 }
 
-
-
                 	try {
                     	if(email.contains("@")) {
                     	    String Emailvalidation = email.substring(email.indexOf('@'));
@@ -164,7 +155,6 @@ import java.lang.String;
                             Email.setError("البريد الإلكتروني غير صحيح");
                         	return false;
                         	}
-                        	///////////////////////////////////////////////////////////////////////
 
                     	}catch (Exception e ){
                         Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_LONG).show();
@@ -172,10 +162,6 @@ import java.lang.String;
 
                 	return true;
                 	}
-                     ///////////////////////////////////////////////////////////////////////
-
-
-
 
 
         public void isConnected() {
@@ -188,7 +174,7 @@ import java.lang.String;
                 	showDialog();
             	}
            	}
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         private void showDialog()
         {
