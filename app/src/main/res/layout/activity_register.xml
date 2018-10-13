@@ -110,6 +110,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:text="@string/register"
+        android:onClick="Register"
         android:textSize="18sp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="208dp"
@@ -123,6 +124,7 @@
         android:text="@string/restore1"
         android:textSize="18sp"
         tools:ignore="MissingConstraints"
+        android:onClick="reset"
         tools:layout_editor_absoluteX="99dp"
         tools:layout_editor_absoluteY="460dp" />
 

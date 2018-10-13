@@ -37,7 +37,8 @@ public class EditProfile1 extends AppCompatActivity {
     }
 
 
-    public void DisplayInfo(){
+    public void DisplayInfo()
+    {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         //setup connection
