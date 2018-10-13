@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity {
                 StrictMode.setThreadPolicy(policy);
                 try
                 {
-                    Class.forName("com.mysql.jdbc.Driver");
+                    Class.forName(DBConnection.urlstring);
                     Connection con= DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password); //establishing connection
                    // StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                         //    .permitAll().build();

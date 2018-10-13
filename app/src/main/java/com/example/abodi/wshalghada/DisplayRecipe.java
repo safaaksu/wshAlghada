@@ -28,6 +28,7 @@ public class DisplayRecipe extends AppCompatActivity {
     private TextView steps;
     private TextView serving;
     private TextView time;
+    private TextView addToFavorite;
     private Button favorite;
 
     @Override
@@ -43,6 +44,7 @@ public class DisplayRecipe extends AppCompatActivity {
         steps = (TextView) findViewById(R.id.steps);
         serving = (TextView) findViewById(R.id.serving);
         time = (TextView) findViewById(R.id.time);
+        addToFavorite = (TextView) findViewById(R.id.addToFavorite);
         favorite = (Button) findViewById(R.id.favorite);
         DisplayInfo();
     }
@@ -54,9 +56,9 @@ public class DisplayRecipe extends AppCompatActivity {
         Connection con;
         Statement stmt;
         String sql,sql1;
-        List<String> Ingredients = null;
+        List<String> IngredientList = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(DBConnection.urlstring);
 
             con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
 
@@ -78,10 +80,10 @@ public class DisplayRecipe extends AppCompatActivity {
                 time.setText(resultSet.getString("CookingTime"));
             }
             while (resultIngredients.next()) {
-                    Ingredients.add(resultIngredients.getString("IngredientName"));
+                IngredientList.add(resultIngredients.getString("IngredientName"));
             }
-            for(int i=0; i<Ingredients.size();i++){
-                ingredients.setText(Ingredients.get(i)+"\n");
+            for(int i=0; i<IngredientList.size();i++){
+                ingredients.setText(IngredientList.get(i)+"\n");
             }
             stmt.close();
             con.close();
@@ -97,7 +99,7 @@ public class DisplayRecipe extends AppCompatActivity {
     }
 
 //////////////////////////back to what???
-    public void imageButton(View view) {
+    public void backButton(View view) {
         Intent intent = new Intent(this, AddedRecipe.class);
         startActivity(intent);
     }
@@ -117,12 +119,14 @@ public class DisplayRecipe extends AppCompatActivity {
             if(favorite.getBackground().equals(R.drawable.ic_heart)) {
                 /////////////////RecipeID
                 sql = "INSERT INTO Favor (Username, RecipeID) VALUES (" + Login.getUserID(getApplicationContext()) + "," + Login.getUserID(getApplicationContext()) + ");";
-                favorite.setBackgroundResource(R.drawable.fullHeart);
+                favorite.setBackgroundResource(R.drawable.full_heart);
+                addToFavorite.setText("الغاء من مفضلتي");
             }
             else{
                 /////////////////RecipeID
                 sql = "DELETE FROM Favor WHERE Username=" + Login.getUserID(getApplicationContext()) + "AND RecipeID=" + Login.getUserID(getApplicationContext()) + ";";
                 favorite.setBackgroundResource(R.drawable.ic_heart);
+                addToFavorite.setText("إضافة الى مفضلتي");
             }
             stmt.close();
             con.close();
@@ -135,6 +139,6 @@ public class DisplayRecipe extends AppCompatActivity {
             Toast errorToast = Toast.makeText(DisplayRecipe.this, " "+e.getMessage() ,Toast.LENGTH_SHORT);
             errorToast.show();
         }
-        favorite.setBackgroundResource(R.drawable.fullHeart);
+        favorite.setBackgroundResource(R.drawable.full_heart);
     }
 }

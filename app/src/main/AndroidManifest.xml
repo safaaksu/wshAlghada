@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.abodi.wshalghada">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Login"
+            android:name=".EditProfile1"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +26,8 @@
         <activity android:name=".RestorePassword" />
         <activity android:name=".EditRecipe" />
         <activity android:name=".AddRecipe" />
-        <activity android:name=".EditProfile1" />
         <activity android:name=".AddedRecipe" />
-        <activity android:name=".DisplayReccipe"></activity>
+        <activity android:name=".DisplayRecipe"></activity>
     </application>
 
 </manifest>

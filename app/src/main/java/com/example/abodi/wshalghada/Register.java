@@ -9,19 +9,12 @@ package com.example.abodi.wshalghada; //ok
 	import android.provider.Settings;
 	import android.support.v7.app.AppCompatActivity;
 	import android.os.Bundle;
-	import android.view.KeyEvent;
 	import android.view.View;
 	import android.widget.EditText;
-	import android.widget.RadioButton;
 	import android.widget.Toast;
 
 	import java.security.MessageDigest;
 	import java.security.NoSuchAlgorithmException;
-	import java.sql.Connection;
-	import java.sql.DriverManager;
-    import java.sql.ResultSet;
-	import java.sql.SQLException;
-	import java.sql.Statement;
 
 import java.lang.String;
 
@@ -96,53 +89,52 @@ import java.lang.String;
         }
 
 
-            public boolean isValid(String Username , String DisplayName , String Email , String Password , String Password2 ) {
+            public boolean isValid(String username , String displayName , String email , String password , String password2 ) {
                 //validate all inputs
-                	if (Username.equals("")) {
+                	if (username.equals("")) {
                         Username.setError("يجب ملئ الخانة");
                     		return false; }
 
-                    if (DisplayName.equals("")) {
+                    if (displayName.equals("")) {
                         DisplayName.setError("يجب ملئ الخانة");
                     return false; }
 
-                    if (Email.equals("")) {
+                    if (email.equals("")) {
                         Email.setError("يجب ملئ الخانة");
                     return false; }
 
-                     if (Password.equals("")) {
+                     if (password.equals("")) {
                          Password.setError("يجب ملئ الخانة");
                     return false; }
 
-                    if (Password2.equals("")) {
+                    if (password2.equals("")) {
                         Password2.setError("يجب ملئ الخانة");
                     return false; }
-                    ///////////////////////////////////////////////
 
-                if(Username.length()==11){
+                if(username.length()==11){
                     Username.setError("يجب ألا يزيد أسم المستخدم عن ١٠ أحرف");
                     return false; }
 
-                if(DisplayName.length()==30){
+                if(displayName.length()==30){
                     DisplayName.setError("يجب ألا يزيد الأسم الظاهر عن ٣٠ أحرف");
                     return false; }
 
-                if(Email.length()==30){
+                if(email.length()==30){
                     Email.setError("يجب ألا يزيد البريد الإلكتروني عن ٣٠ أحرف");
                     return false; }
 
-                if(Password.length()==20){
+                if(password.length()==20){
                     Password.setError("يجب ألا تزيد كلمة المرور عن ٢٠ أحرف");
                     return false; }
 
-                if(Password2.length()==20){
+                if(password2.length()==20){
                     Password2.setError("يجب ألا تزيد كلمة المرور عن ٢٠ أحرف");
                     return false; }
-                    //////////////////////////////////////////////////////
-                if(!Password .equals(Password2)){
+
+                if(!password .equals(password2)){
                 Password2.setError("كلمة المرور غير مطابقة");
                 return false; }
-                if(Password.length()<8){
+                if(password.length()<8){
                     Password.setError("يجب ان يتكون رمز الدخول من ثمانيه احروف او اكثر");
                     return false;
                 }
@@ -150,8 +142,8 @@ import java.lang.String;
 
 
                 	try {
-                    	if(Email.contains("@")) {
-                    	    String Emailvalidation = Email.substring(Email.indexOf('@'));
+                    	if(email.contains("@")) {
+                    	    String Emailvalidation = email.substring(email.indexOf('@'));
                         	String pattren = Emailvalidation.toLowerCase();
                         	switch (Emailvalidation) {
                             	case "@hotmail.com":
@@ -222,12 +214,6 @@ import java.lang.String;
         	}
 
 
-
-
-
-
-
-
         public String md5(String s) {
             try {
                 // Create MD5 Hash
@@ -246,9 +232,6 @@ import java.lang.String;
             }
             return "";
         }
-
-
-
 
         public void reset(View view) {
             Username.setText("");
