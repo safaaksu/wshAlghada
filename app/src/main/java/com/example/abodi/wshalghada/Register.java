@@ -24,6 +24,8 @@ package com.example.abodi.wshalghada; //ok
 	import java.sql.Statement;
 
 import java.lang.String;
+    import android.view.ViewGroup;
+
 
 
 
