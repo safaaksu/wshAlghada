@@ -169,6 +169,7 @@
     <string name="email">البريد الالكتروني:</string>
     <string name="password">كلمة المرور:</string>
     <string name="password0">اعادة كلمة المرور:</string>
+    <string name="deletefromf">الغاء من مفضلتي</string>
 
     <string-array name="sections">
         <item>اختر القسم</item>
