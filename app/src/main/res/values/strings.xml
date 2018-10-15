@@ -164,6 +164,11 @@
     <string name="time">مدة التحضير:</string>
     <string name="edit">تعديل</string>
     <string name="_1">1</string>
+    <string name="textview">TextView</string>
+    <string name="noRecipe" />
+    <string name="email">البريد الالكتروني:</string>
+    <string name="password">كلمة المرور:</string>
+    <string name="password0">اعادة كلمة المرور:</string>
 
     <string-array name="sections">
         <item>اختر القسم</item>

@@ -41,14 +41,13 @@ public class EditProfile1 extends AppCompatActivity {
     {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        //setup connection
-        Connection con = null;
-        Statement stmt =null;
-        String userid, sql;
+        Connection con;
+        Statement stmt;
+        String sql;
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
+            con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
 
 
             stmt = con.createStatement();
@@ -94,7 +93,7 @@ public class EditProfile1 extends AppCompatActivity {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
 
-                con = DriverManager.getConnection(DBConnection.driverName, DBConnection.username, DBConnection.password);
+                con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
 
 
                 stmt = con.createStatement();

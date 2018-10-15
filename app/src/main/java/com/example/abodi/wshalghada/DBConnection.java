@@ -1,5 +1,9 @@
 package com.example.abodi.wshalghada;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class DBConnection {
 
     public static final String urlstring = "jdbc:mysql://mysql6001.site4now.net/db_a41b75_zyoonn";
@@ -7,12 +11,11 @@ public class DBConnection {
     public static final String password = "ksu12345678";
 
 
-   /* public static Connection con;
-    private static String urlstring="jdbc:mysql://192.168.100.14/wshalghada";
+  public static Connection con;
 
     public static Connection createConnection() {
         try {
-            Class.forName(driverName);
+            Class.forName(urlstring);
             try {
                 con = DriverManager.getConnection(urlstring, username, password);
             } catch (SQLException ex) {
@@ -25,5 +28,5 @@ public class DBConnection {
         }
         return con;
     }
-    */
+
 }
