@@ -12,6 +12,8 @@ public class User {
     private String Email;
     private String Password;
 
+    public User(){}
+
     public User(String username, String displayName, String email, String password) {
         Username = username;
         DisplayName = displayName;
@@ -19,9 +21,7 @@ public class User {
         Password = password;
 
     }
-    public User() {
 
-    }
     public String getUsername() {
         return Username;    }
 
@@ -88,8 +88,7 @@ public class User {
         }     } */
 
 
-
-        public String Register(String username, String displayName, String email, String password) {
+        public  String Register(String username, String displayName, String email, String password) {
             //SETUP CONNECTION
             Connection con = null;
             Statement stmt = null;
@@ -98,54 +97,45 @@ public class User {
                 Class.forName("com.mysql.jdbc.Driver");
                 //STEP 3: Open a connection
                 con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
-                //conn = DriverManager.getConnection(DB_Info.DB_URL, DB_Info.USER, DB_Info.PASS);
-                //check if the email not for admin
-                  /* Statement statm = conn.createStatement();
-                   String query = "SELECT * FROM admin where Email='" + user_Email + "'";
-                   ResultSet resultset = statm.executeQuery(query);
-                   int isthere = 0;
-                   while (resultset.next()) {
-                       isthere++;
-                   }            if (isthere == 1) {
-                       return null;
-                   } else {*/
-                //STEP 4: Execute a query
+                //check if userName not use
                 stmt = con.createStatement();
-                String sql, username1 = null;
-                sql = "INSERT INTO User (Username, DisplayName, Email, Password) Values('" + username + "','" + displayName + "','" + email + "','" + password + "')";
-                int rs = stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-                ResultSet keys = stmt.getGeneratedKeys();
-                stmt.close();
-                if (rs == 1) {//num of row affected
-                    // set session user_id
-                    while (keys.next()) {
-                        username = keys.getString(1);
-                    }
-                    Username = username;
-                    DisplayName = displayName;
-                    Email = email;
-                    Password = password;
-
-                    keys.close();
-                    stmt.close();
-                    //resultset.close();
-                    //statm.close();
-                    con.close();
-                    return username;
-                } else {
-                    return null;
+                String q= "SELECT * FROM User WHERE Username='"+username+"'";
+                ResultSet resultSet=stmt.executeQuery(q);
+                int isthere=0;
+                while (resultSet.next()){
+                    isthere++;
                 }
-                // }
+                if(isthere>0) return null;
+
+                else {
+                    //STEP 4: Execute a query
+                    stmt = con.createStatement();
+                    String sql, username1 = null;
+                    sql = "INSERT INTO User (Username, Password, DisplayName, Email) VALUES('" + username + "','" + password + "','" + displayName + "','" + email + "')";
+                    int result = stmt.executeUpdate(sql);
+                    ResultSet keys = stmt.getGeneratedKeys();
+                    if (result == 1) {
+                        while (keys.next()) {
+                            username1 = keys.getString(1);
+                        }
+                        Username = username;
+                        DisplayName = displayName;
+                        Email = email;
+                        Password = password;
+
+                        stmt.close();
+                        con.close();
+                        return username1;
+                    } else {
+                        return null;
+                    }
+                }
             } catch (SQLException se) {
                 return null;
-            } catch (Exception e) {
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
                 return null;
             }
 
-        }}
-    /*
-    public void EditProfileUser(String UserName, String UserEmail,String Gender){
-        User_Email=UserEmail;    this.Gender=Gender;    this.UserName=UserName;
-    }
+        }
 }
-    */

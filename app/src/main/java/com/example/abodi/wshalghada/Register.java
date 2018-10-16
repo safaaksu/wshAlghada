@@ -1,34 +1,31 @@
 package com.example.abodi.wshalghada; //ok
 	import android.app.AlertDialog;
-	import android.content.Context;
-	import android.content.DialogInterface;
-	import android.content.Intent;
-	import android.net.ConnectivityManager;
-	import android.net.NetworkInfo;
-	import android.os.StrictMode;
-	import android.provider.Settings;
-	import android.support.v7.app.AppCompatActivity;
-	import android.os.Bundle;
-	import android.view.View;
-	import android.widget.EditText;
-	import android.widget.Toast;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.provider.Settings;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
-	import java.security.MessageDigest;
-	import java.security.NoSuchAlgorithmException;
-
-import java.lang.String;
-    import android.view.ViewGroup;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
     public class Register extends AppCompatActivity {
-        public EditText Username = null;
-        public EditText DisplayName= null;
-        public EditText Email= null;
-        public EditText Password = null;
-        public EditText Password2 = null;
-        public static User user = null;
+        public EditText Username;
+        public EditText DisplayName;
+        public EditText Email;
+        public EditText Password;
+        public EditText Password2;
+        public static User user;
        // check password
-        private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"; //ok
+        //private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"; //ok
 
 
         @Override
@@ -38,36 +35,31 @@ import java.lang.String;
 
             //check wifi connection
             isConnected();
+
             Username = ((EditText)findViewById(R.id.username2));
             DisplayName= ((EditText)findViewById(R.id.displayName));
             Email= ((EditText)findViewById(R.id.email1));
             Password = ((EditText)findViewById(R.id.password2));
             Password2 = ((EditText)findViewById(R.id.surePass));
-        }//ok
+        }
 
 
         public void Register(View view) {
             //Validate inputs
-            String usern = Username.getText().toString();
-            String userd = DisplayName.getText().toString();
-            String usere = Email.getText().toString();
-            String userp = Password.getText().toString();
-            String users = Password2.getText().toString();
+            String username = Username.getText().toString();
+            String userdisplay = DisplayName.getText().toString();
+            String useremail = Email.getText().toString();
+            String userpassword = Password.getText().toString();
+            String userpassword2 = Password2.getText().toString();
 
-            //Validate Password
-           /* public boolean validate( String Password){
-                return PASSWORD_PATTERN.matches(Password);
-            }
-*/
-            if (isValid(usern, userd, usere, userp, users)) {
-
+            if (isValid(username, userdisplay, useremail, userpassword, userpassword2)) {
                 //database connection
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                 StrictMode.setThreadPolicy(policy);
-                String hashpass = md5(userp);
+                String hashpass = md5(userpassword);
                 user = new User();
-                String username = user.Register(usern,userd,usere,hashpass);
-                if (username!=null) {
+                String userName = user.Register(username,userdisplay,useremail,hashpass);
+                if (userName!=null) {
                     	//SaveLogin.setUsername(getApplicationContext(),Username);
                     	//redirect to home activity (spicalty)
                     	//startActivity(new Intent(HomeFragment.this, Specialties.class));
@@ -75,12 +67,15 @@ import java.lang.String;
                     startActivity(intent);
                         } else {
                         //error message
-                    	Toast errorToast = Toast.makeText(Register.this, "البريد الموجود مسجل مسبقاً", Toast.LENGTH_SHORT);
+                    	Toast errorToast = Toast.makeText(Register.this, "اسم المستخدم مسجل مسبقاً", Toast.LENGTH_SHORT);
                         errorToast.show();
                     	}
-
-
             }
+
+            //Validate Password
+           /* public boolean validate( String Password){
+                return PASSWORD_PATTERN.matches(Password);
+            }*/
         }
 
 
@@ -161,7 +156,6 @@ import java.lang.String;
                     	}catch (Exception e ){
                         Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_LONG).show();
                     	}
-
                 	return true;
                 	}
 

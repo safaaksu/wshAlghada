@@ -1,6 +1,8 @@
 package com.example.abodi.wshalghada;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -16,7 +18,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 public class DisplayRecipe extends AppCompatActivity {
 
@@ -30,6 +31,10 @@ public class DisplayRecipe extends AppCompatActivity {
     private TextView time;
     private TextView addToFavorite;
     private Button favorite;
+    int fav=0;
+    int numofF;
+    SharedPreferences sp =getSharedPreferences("login", Context.MODE_PRIVATE);
+    String userLogin = sp.getString("username",null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +60,15 @@ public class DisplayRecipe extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         Connection con;
         Statement stmt;
-        String sql,sql1, sql2;
-        List<String> IngredientList = null;
-        ResultSet resultSet, resultIngredients, resultSet2;
+        String sql, sql1, sql2, sql3;
+        String IngredientList=null;
+        ResultSet resultSet, resultIngredients, resultContain, resultSet2;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
             stmt = con.createStatement();
 
-            /////////////////RecipeID
+            /////////////////RecipeID!!!!!!!!
             sql = "SELECT * FROM recipe WHERE RecipeID = '1' ";
             resultSet = stmt.executeQuery(sql);
 
@@ -75,31 +80,60 @@ public class DisplayRecipe extends AppCompatActivity {
                 steps.setText(resultSet.getString("Instruction"));
                 serving.setText(resultSet.getString("NumOfServing"));
                 time.setText(resultSet.getString("CookingTime"));
+                numofF=resultSet.getInt("NumOfF");
             }
 
-            /////////////////IngredientID
-            sql1 = "SELECT * FROM Ingredient WHERE IngredientID = '1' ";
-            resultIngredients = stmt.executeQuery(sql1);
+            /*
+            /////////////////RecipeID
+            sql1 = "SELECT * FROM contain WHERE RecipeID = '1'";
+            resultContain = stmt.executeQuery(sql1);
 
-            while (resultIngredients.next()) {
-                IngredientList.add(resultIngredients.getString("IngredientName"));
+            while (resultContain.next()) {
+                IngredientList = IngredientList + (resultContain.getString("Number")+" ");
+                IngredientList = IngredientList + (resultContain.getString("Unit")+" ");
+                sql2 = "SELECT IngredientName FROM ingredient WHERE IngredientID ="+resultContain.getString("IngredientID");
+                resultIngredients = stmt.executeQuery(sql2);
+                IngredientList = IngredientList + (resultIngredients.getString("IngredientName")+"\n");
             }
-            for(int i=0; i<IngredientList.size();i++){
-                ingredients.setText(IngredientList.get(i)+"\n");
-            }
+            ingredients.setText(IngredientList);
+            */
 
-            /////////////////RecipeID AND Username
-            sql2 = "SELECT * FROM favor WHERE Username='safa' AND RecipeID= '1' ";
-            resultSet2 = stmt.executeQuery(sql2);
-            if(resultSet2 != null){
-                favorite.setBackgroundResource(R.drawable.full_heart);
+
+           /* while (resultIngredients.next()) {
+                //ingredients.setText(resultContain.getString("Number")+" ");
+                //ingredients.setText(resultContain.getString("Unit")+" ");
+                ingredients.setText(resultIngredients.getString("IngredientName")+"\n");
+            }*/
+
+            /*for(int i=0; i<IngredientList.size(); i=i+3){
+                ingredients.setText(IngredientList.get(i)+" ");
+                ingredients.setText(IngredientList.get(i+1)+" ");
+                ingredients.setText(IngredientList.get(i+2)+"\n");
+            }*/
+
+            /////////////////RecipeID!!!!!!!!
+            sql3 = "SELECT * FROM favor WHERE Username='"+userLogin+"' AND RecipeID= '1' ";
+            resultSet2 = stmt.executeQuery(sql3);
+            int isthere=0;
+            while (resultSet2.next()) {
+                isthere++;
             }
+                if (isthere>0) {
+                    fav = 1;
+                    addToFavorite.setText("إلغاء التفضيل");
+                    favorite.setBackgroundResource(R.drawable.full_heart);
+                }
+                else{
+                    fav=0;
+                    favorite.setBackgroundResource(R.drawable.ic_heart);
+                    addToFavorite.setText("إضافة الى مفضلتي");
+                }
 
             stmt.close();
             con.close();
         }
         catch (SQLException se){
-            Toast errorToast = Toast.makeText(DisplayRecipe.this, "يجب أن تكون متصلا ًبالانترنت "+se.getMessage() ,Toast.LENGTH_SHORT);
+            Toast errorToast = Toast.makeText(DisplayRecipe.this, "يجب أن تكون متصلا ًبالانترنت !!!!!!"+se.getMessage() ,Toast.LENGTH_SHORT);
             errorToast.show();
         }
         catch (Exception e){
@@ -120,27 +154,44 @@ public class DisplayRecipe extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         Connection con;
         Statement stmt;
-        String sql;
+        String sql1, sql2;
+        int result1, result2;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
             stmt = con.createStatement();
 
-            if(favorite.getBackground().equals(R.drawable.ic_heart)) {
-                /////////////////RecipeID
-                sql = "INSERT INTO Favor (Username, RecipeID) VALUES ( 'safa', '1' )";
-                favorite.setBackgroundResource(R.drawable.full_heart);
-                addToFavorite.setText("@string/deletefromf");
-                /////////////
-                sql = "UPDATE recipe SET NumOfF=NumOfF+1 WHERE RecipeID = '1' ";
-            }
+            if(fav == 0) {
+                /////////////////RecipeID!!!!!!!!
+                sql1 = "INSERT INTO favor (Username, RecipeID) VALUES ('"+userLogin+"','1')";
+                result1 = stmt.executeUpdate(sql1);
+                numofF++;
+                if (result1 == 1) {
+                    /////////////////RecipeID!!!!!!!!
+                    sql2 = "UPDATE recipe SET NumOfF = '"+numofF+"' WHERE RecipeID = '1' ";
+                    result2 = stmt.executeUpdate(sql2);
+                    if (result2 == 1) {
+                        addToFavorite.setText("إلغاء التفضيل");
+                        favorite.setBackgroundResource(R.drawable.full_heart);
+                        fav=1;
+                    }
+                }
+           }
             else{
-                /////////////////RecipeID
-                sql = "DELETE FROM Favor WHERE Username='safa' AND RecipeID= '1' ";
-                favorite.setBackgroundResource(R.drawable.ic_heart);
-                addToFavorite.setText("@string/Add_to_fav");
-                /////////////
-                sql = "UPDATE recipe SET NumOfF=NumOfF-1 WHERE RecipeID = '1' ";
+                /////////////////RecipeID!!!!!!!!
+                sql1 = "DELETE FROM favor '"+userLogin+"' AND RecipeID= '1' ";
+                result1 = stmt.executeUpdate(sql1);
+                numofF--;
+                if (result1 == 1) {
+                    /////////////////RecipeID!!!!!!!!
+                    sql2 = "UPDATE recipe SET NumOfF= '"+numofF+"' WHERE RecipeID = '1' ";
+                    result2 = stmt.executeUpdate(sql2);
+                    if (result2 == 1) {
+                        addToFavorite.setText("إضافة الى مفضلتي");
+                        favorite.setBackgroundResource(R.drawable.ic_heart);
+                        fav=0;
+                    }
+                }
             }
             stmt.close();
             con.close();
@@ -153,6 +204,5 @@ public class DisplayRecipe extends AppCompatActivity {
             Toast errorToast = Toast.makeText(DisplayRecipe.this, " "+e.getMessage() ,Toast.LENGTH_SHORT);
             errorToast.show();
         }
-        favorite.setBackgroundResource(R.drawable.full_heart);
     }
 }
