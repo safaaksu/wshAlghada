@@ -17,6 +17,8 @@ package com.example.abodi.wshalghada; //ok
 	import java.security.NoSuchAlgorithmException;
 
 import java.lang.String;
+    import android.view.ViewGroup;
+
 
     public class Register extends AppCompatActivity {
         public EditText Username = null;

@@ -46,12 +46,10 @@ public class EditProfile1 extends AppCompatActivity {
         String sql;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-
             con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
-
-
             stmt = con.createStatement();
-            sql = "SELECT * FROM User WHERE Username='safa'";
+
+            sql = "SELECT * FROM user WHERE Username='safa'";
             ResultSet resultSet  = stmt.executeQuery(sql);
 
             while (resultSet.next()) {
@@ -78,27 +76,22 @@ public class EditProfile1 extends AppCompatActivity {
     public void EditButton(View view) {
         String username = UserName.getText().toString();
         String displayname = DisplayName.getText().toString();
-        String email1 = email.getText().toString();
+        String Email = email.getText().toString();
         String pass = Password.getText().toString();
         String pass1 = Password1.getText().toString();
-        boolean isValid = ValidateInputs(displayname,email1,pass,pass1);
+        boolean isValid = ValidateInputs(displayname,Email,pass,pass1);
         if(isValid){
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            //setup connection
-            Connection con = null;
-            Statement stmt =null;
-            String userid, sql;
-            int result;
+            Connection con;
+            Statement stmt;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-
                 con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
-
-
                 stmt = con.createStatement();
-                sql = "UPDATE User SET Username = ('"+username+"'), DisplayName = ('"+displayname+"'), Eamil = ('"+email+"'), Password = ('"+pass+"')";
-                result = stmt.executeUpdate(sql);
+
+                 String sql = "UPDATE user SET Password='"+pass+"' , DisplayName='"+displayname+"' , Email='"+Email+"' WHERE Username='safa'";
+                int result = stmt.executeUpdate(sql);
                 if (result == 1) {
                     Toast done = Toast.makeText(EditProfile1.this, " تم التعديل ", Toast.LENGTH_SHORT);
                     done.show();
@@ -112,7 +105,7 @@ public class EditProfile1 extends AppCompatActivity {
                 con.close();
             }
             catch (SQLException se){
-                Toast errorToast = Toast.makeText(EditProfile1.this, "يجب أن تكون متصلا ًبالانترنت " ,Toast.LENGTH_SHORT);
+                Toast errorToast = Toast.makeText(EditProfile1.this, "يجب أن تكون متصلا ًبالانترنت! " ,Toast.LENGTH_SHORT);
                 errorToast.show();
             }
             catch (Exception e){
@@ -141,7 +134,7 @@ public class EditProfile1 extends AppCompatActivity {
             return false;
         }
         if(passwordV.length()<8){
-            Password.setError("يجب ان يتكون رمز الدخول من ثمانيه احروف او اكثر");
+            Password.setError("يجب ان يتكون رمز الدخول من ثمانية حروف او اكثر");
             return false;
         }
         if(!passwordV.equals(passwordV1)){

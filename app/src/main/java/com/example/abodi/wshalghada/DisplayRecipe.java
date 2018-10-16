@@ -55,19 +55,17 @@ public class DisplayRecipe extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         Connection con;
         Statement stmt;
-        String sql,sql1;
+        String sql,sql1, sql2;
         List<String> IngredientList = null;
+        ResultSet resultSet, resultIngredients, resultSet2;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
             stmt = con.createStatement();
 
             /////////////////RecipeID
-            sql = "SELECT * FROM Recipe  WHERE RecipeID =" + Login.getUserID(getApplicationContext());
-            ResultSet resultSet = stmt.executeQuery(sql);
-            /////////////////RecipeID
-            sql1 = "SELECT * FROM Ingredient  WHERE RecipeID =" + Login.getUserID(getApplicationContext());
-            ResultSet resultIngredients = stmt.executeQuery(sql1);
+            sql = "SELECT * FROM recipe WHERE RecipeID = '1' ";
+            resultSet = stmt.executeQuery(sql);
 
             while (resultSet.next()) {
                 recipeName.setText(resultSet.getString("RecipeName"));
@@ -78,12 +76,25 @@ public class DisplayRecipe extends AppCompatActivity {
                 serving.setText(resultSet.getString("NumOfServing"));
                 time.setText(resultSet.getString("CookingTime"));
             }
+
+            /////////////////IngredientID
+            sql1 = "SELECT * FROM Ingredient WHERE IngredientID = '1' ";
+            resultIngredients = stmt.executeQuery(sql1);
+
             while (resultIngredients.next()) {
                 IngredientList.add(resultIngredients.getString("IngredientName"));
             }
             for(int i=0; i<IngredientList.size();i++){
                 ingredients.setText(IngredientList.get(i)+"\n");
             }
+
+            /////////////////RecipeID AND Username
+            sql2 = "SELECT * FROM favor WHERE Username='safa' AND RecipeID= '1' ";
+            resultSet2 = stmt.executeQuery(sql2);
+            if(resultSet2 != null){
+                favorite.setBackgroundResource(R.drawable.full_heart);
+            }
+
             stmt.close();
             con.close();
         }
@@ -117,15 +128,19 @@ public class DisplayRecipe extends AppCompatActivity {
 
             if(favorite.getBackground().equals(R.drawable.ic_heart)) {
                 /////////////////RecipeID
-                sql = "INSERT INTO Favor (Username, RecipeID) VALUES (" + Login.getUserID(getApplicationContext()) + "," + Login.getUserID(getApplicationContext()) + ");";
+                sql = "INSERT INTO Favor (Username, RecipeID) VALUES ( 'safa', '1' )";
                 favorite.setBackgroundResource(R.drawable.full_heart);
-                addToFavorite.setText("الغاء من مفضلتي");
+                addToFavorite.setText("@string/deletefromf");
+                /////////////
+                sql = "UPDATE recipe SET NumOfF=NumOfF+1 WHERE RecipeID = '1' ";
             }
             else{
                 /////////////////RecipeID
-                sql = "DELETE FROM Favor WHERE Username=" + Login.getUserID(getApplicationContext()) + "AND RecipeID=" + Login.getUserID(getApplicationContext()) + ";";
+                sql = "DELETE FROM Favor WHERE Username='safa' AND RecipeID= '1' ";
                 favorite.setBackgroundResource(R.drawable.ic_heart);
-                addToFavorite.setText("إضافة الى مفضلتي");
+                addToFavorite.setText("@string/Add_to_fav");
+                /////////////
+                sql = "UPDATE recipe SET NumOfF=NumOfF-1 WHERE RecipeID = '1' ";
             }
             stmt.close();
             con.close();
