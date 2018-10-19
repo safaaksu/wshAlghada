@@ -1,46 +1,74 @@
 package com.example.abodi.wshalghada;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import java.util.ArrayList;
 
 public class AddedRecipe extends AppCompatActivity {
 
-    private ImageButton photo;
-    private List<Recipe> recipeList;
+    private ArrayList<String> recipeID = new ArrayList<>();
+    private byte[] bytesimage;
+    private Blob imageBlob;
+    private RecyclerView recyclerView;
+    private postAdpater postAdpater;
+    private ArrayList<post> postArrayList = new ArrayList<>();
+    private Bitmap bitmap;
+    private TextView noRecipe;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_added_recipes);
 
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        noRecipe = (TextView) findViewById(R.id.noRecipe);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
-            Connection con = null;
-            Statement stmt =null;
+            Connection con;
+            Statement stmt;
             String sql;
+            int numOfRecipes=0;
+
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
                 stmt = con.createStatement();
-                sql = "SELECT * FROM Recipe WHERE Username='safa'";
+                ///////////////Username!!!!!
+                sql = "SELECT RecipeID, Photo FROM Recipe WHERE Username='Mona'";
                 ResultSet resultSet  = stmt.executeQuery(sql);
 
                 while (resultSet.next()) {
-                    //photo.setImage(resultSet.("Photo"));
+                    numOfRecipes++;
+                    imageBlob=resultSet.getBlob("Photo");
+                    bytesimage=(imageBlob.getBytes(1,(int)imageBlob.length()));
+                    bitmap=BitmapFactory.decodeByteArray(bytesimage,0,bytesimage.length);
+                    postArrayList.add(new post(bitmap,R.drawable.pencil,R.drawable.trash));
+                    postAdpater = new postAdpater(this, postArrayList);
+                    recyclerView = (RecyclerView) findViewById(R.id.RV_posts);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    recyclerView.setAdapter(postAdpater);
+                    //recipeID.add(resultSet.getString("RecipeID"));
                 }
+                if (numOfRecipes==0) noRecipe.setText(" لا توجد وصفات مضافة ");
+
                 stmt.close();
                 con.close();
             }

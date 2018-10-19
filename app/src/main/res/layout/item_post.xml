@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/recipeImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="180dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/white"
+        android:contentDescription="@string/button"
+        android:scaleType="fitXY"
+        android:src="@drawable/recipe" />
+
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="210dp"
+        android:background="@android:color/background_light"
+        android:contentDescription="@string/button"
+        android:scaleType="fitXY"
+        android:src="@drawable/trash" />
+
+    <ImageButton
+        android:id="@+id/editButton"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="20dp"
+        android:background="@android:color/background_light"
+        android:contentDescription="@string/button"
+        android:scaleType="fitXY"
+        android:src="@drawable/pencil" />
+
+</RelativeLayout>

@@ -91,7 +91,7 @@ public class User {
         public  String Register(String username, String displayName, String email, String password) {
             //SETUP CONNECTION
             Connection con = null;
-            Statement stmt = null;
+            Statement stmt, stmt1;
             try {
                 //STEP 2: Register JDBC driver
                 Class.forName("com.mysql.jdbc.Driver");
@@ -105,19 +105,23 @@ public class User {
                 while (resultSet.next()){
                     isthere++;
                 }
-                if(isthere>0) return null;
+                if(isthere>0){
+                    stmt.close();
+                    con.close();
+                    return null;
+                }
 
                 else {
                     //STEP 4: Execute a query
-                    stmt = con.createStatement();
+                    stmt1 = con.createStatement();
                     String sql, username1 = null;
                     sql = "INSERT INTO User (Username, Password, DisplayName, Email) VALUES('" + username + "','" + password + "','" + displayName + "','" + email + "')";
                     int result = stmt.executeUpdate(sql);
-                    ResultSet keys = stmt.getGeneratedKeys();
+                    //ResultSet keys = stmt1.getGeneratedKeys();
                     if (result == 1) {
-                        while (keys.next()) {
+                        /*while (keys.next()) {
                             username1 = keys.getString(1);
-                        }
+                        }*/
                         Username = username;
                         DisplayName = displayName;
                         Email = email;
@@ -125,8 +129,11 @@ public class User {
 
                         stmt.close();
                         con.close();
-                        return username1;
+                        return username;
+                        //return username1;
                     } else {
+                        stmt.close();
+                        con.close();
                         return null;
                     }
                 }
@@ -136,6 +143,5 @@ public class User {
                 e.printStackTrace();
                 return null;
             }
-
         }
 }
