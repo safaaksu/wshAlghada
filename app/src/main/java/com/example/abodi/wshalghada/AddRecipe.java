@@ -22,26 +22,42 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class AddRecipe extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+
+    String[] Cuisine = {"عربي","إيطالي","هندي","فرنسي","صيني"};
+    String ID_Selected="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_recipe);
-
-        Spinner spinner = findViewById(R.id.spinner1);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sections, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
+        setContentView(R.layout.activity_main);
+        Spinner CuisineSpinner = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<String> ada = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Cuisine);
+        ada.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        CuisineSpinner.setAdapter(ada);
+        CuisineSpinner.setOnItemSelectedListener(this);
     }
 
+
+
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position){
+            case 0: ID_Selected="1";
+                break;
+            case 1: ID_Selected="2";
+                break;
+            case 2: ID_Selected="3";
+                break;
+            case 3: ID_Selected="4";
+                break;
+            case 4: ID_Selected="5";
+                break;
+
+        }
     }
 
     @Override

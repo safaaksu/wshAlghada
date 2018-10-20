@@ -105,20 +105,24 @@
                 tools:layout_editor_absoluteY="369dp" />
 
             <Spinner
+                android:id="@+id/spinner10"
+                android:layout_width="match_parent"
+                android:layout_height="56dp" />
+
+            <Spinner
                 android:id="@+id/spinner1"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
-                android:entries="@array/sections"
                 tools:layout_editor_absoluteX="130dp"
-                tools:layout_editor_absoluteY="401dp" />
+                tools:layout_editor_absoluteY="401dp"
+                />
 
             <Spinner
                 android:id="@+id/spinner2"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
-                android:entries="@array/ingredients"
                 tools:layout_editor_absoluteX="130dp"
                 tools:layout_editor_absoluteY="482dp" />
 
@@ -127,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
-                android:entries="@array/quantity"
+
                 tools:layout_editor_absoluteX="130dp"
                 tools:layout_editor_absoluteY="482dp" />
 
@@ -180,36 +184,14 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/editText5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:text="@string/_1"
-                    android:textSize="18sp" />
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:layout_marginStart="300dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/button"
-                android:scaleType="fitXY"
-                android:src="@drawable/add" />
+            <EditText
+                android:id="@+id/editText5"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:ems="10"
+                android:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/textView14"
