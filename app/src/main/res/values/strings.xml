@@ -170,6 +170,10 @@
     <string name="password">كلمة المرور:</string>
     <string name="password0">اعادة كلمة المرور:</string>
     <string name="deletefromf">الغاء من مفضلتي</string>
+    <string name="imageView10">مقبلات</string>
+    <string name="imageView13">حلويات</string>
+    <string name="حلويات">حلويات</string>
+    <string name="مقبلات">مقبلات</string>
 
     <string-array name="sections">
         <item>اختر القسم</item>
