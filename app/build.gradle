@@ -1,3 +1,4 @@
+
 apply plugin: 'com.android.application'
 
 android {
@@ -39,4 +40,6 @@ dependencies {
     implementation 'mysql:mysql-connector-java:5.1.25'
 
     implementation 'com.android.support:gridlayout-v7:27.1.1'
+    compile 'pub.devrel:easypermissions:0.2.1'
+
 }

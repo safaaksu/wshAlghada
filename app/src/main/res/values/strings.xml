@@ -73,6 +73,8 @@
         <item>فطور</item>
         <item>مشروبات</item>
     </string-array>
+
+
     <string-array name="Cuisine">
         <item>القسم</item>
         <item>شعبي</item>

@@ -37,13 +37,14 @@
         app:srcCompat="@drawable/back" />
 
     <ScrollView
-        android:layout_width="356dp"
-        android:layout_height="373dp"
+        android:layout_width="370dp"
+        android:layout_height="409dp"
         android:layout_marginStart="12dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,27 +64,94 @@
                 tools:layout_editor_absoluteX="178dp"
                 tools:layout_editor_absoluteY="189dp" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="26dp"
-                android:layout_marginBottom="20dp"
-                android:contentDescription="@string/Necessary"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="246dp"
-                tools:layout_editor_absoluteY="228dp" />
-
             <EditText
                 android:id="@+id/editText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="اسم الوصفة"
                 android:inputType="textPersonName"
-                android:text="اسم الوصفة"
                 tools:layout_editor_absoluteX="140dp"
                 tools:layout_editor_absoluteY="278dp" />
+
+            <TextView
+                android:id="@+id/textView50"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="أختار نوع الوصفة" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/عشاء"
+                    android:textAlignment="center" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/غداء"
+                    android:textAlignment="center" />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="فطور"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="حلويات"
+                    android:textAlignment="center" />
+
+                <CheckBox
+                    android:id="@+id/checkBox5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/مشروبات"
+                    android:textAlignment="center" />
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="مقبلات"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView48"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="أختار نوع الطبق"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="52dp" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -105,9 +173,12 @@
                 tools:layout_editor_absoluteY="369dp" />
 
             <Spinner
-                android:id="@+id/spinner10"
+                android:id="@+id/spinner21"
                 android:layout_width="match_parent"
-                android:layout_height="56dp" />
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                tools:layout_editor_absoluteX="130dp"
+                tools:layout_editor_absoluteY="482dp" />
 
             <Spinner
                 android:id="@+id/spinner1"
@@ -115,16 +186,7 @@
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
                 tools:layout_editor_absoluteX="130dp"
-                tools:layout_editor_absoluteY="401dp"
-                />
-
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="10dp"
-                tools:layout_editor_absoluteX="130dp"
-                tools:layout_editor_absoluteY="482dp" />
+                tools:layout_editor_absoluteY="401dp" />
 
             <Spinner
                 android:id="@+id/spinner3"
@@ -138,22 +200,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="right|end"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/editText"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_marginStart="260dp"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:textSize="18sp" />
+                    android:inputType="numberDecimal" />
 
                 <TextView
                     android:id="@+id/textView7"
-                    android:layout_width="0dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="@string/Quantity"
                     android:textSize="18sp" />
 
@@ -163,9 +223,9 @@
                 android:id="@+id/imageButton2"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginStart="300dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/button"
                 android:scaleType="fitXY"
@@ -205,16 +265,32 @@
                 android:id="@+id/imageButton5"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="200dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginStart="200dp"
                 android:contentDescription="@string/button"
+                android:onClick="AddPic"
                 android:scaleType="fitXY"
                 app:srcCompat="@android:drawable/ic_input_add" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView51"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="دقيقة/دقائق" />
+
+                <EditText
+                    android:id="@+id/editText6"
+                    android:layout_width="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number" />
 
                 <TextView
                     android:id="@+id/textView15"
@@ -224,12 +300,28 @@
                     android:layout_weight="1"
                     android:text="@string/Time"
                     android:textSize="18sp" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView52"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="شخص" />
+
+                <EditText
+                    android:id="@+id/editText7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number" />
 
                 <TextView
                     android:id="@+id/textView16"
@@ -251,8 +343,8 @@
                     android:id="@+id/button"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginStart="50dp"
                     android:layout_weight="1"
                     android:background="@color/color1"
                     android:text="@string/Reset"
@@ -265,6 +357,7 @@
                     android:layout_marginEnd="40dp"
                     android:layout_weight="1"
                     android:background="@color/color1"
+                    android:onClick="add"
                     android:text="@string/add"
                     android:textSize="20sp" />
             </LinearLayout>
