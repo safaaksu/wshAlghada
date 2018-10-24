@@ -30,6 +30,8 @@ public class AddedRecipe extends AppCompatActivity {
     private ArrayList<post> postArrayList = new ArrayList<>();
     private Bitmap bitmap;
     private TextView noRecipe;
+    //SharedPreferences sp =getSharedPreferences("login", Context.MODE_PRIVATE);
+    //String userLogin = sp.getString("username",null);
 
 
     @Override
