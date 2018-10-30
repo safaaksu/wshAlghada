@@ -35,7 +35,7 @@ public class DisplayRecipe extends AppCompatActivity {
     private Button favorite;
     int fav=0;
     int numofF;
-    SharedPreferences sp =getSharedPreferences("login", Context.MODE_PRIVATE);
+    SharedPreferences sp =getSharedPreferences("Login", Context.MODE_PRIVATE);
     String userLogin = sp.getString("username",null);
     private Blob blobimage;
     private byte[] bytesimage;
