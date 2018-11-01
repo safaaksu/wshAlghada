@@ -3,6 +3,7 @@ package com.example.abodi.wshalghada;
 import android.graphics.Bitmap;
 
 public class post {
+    String ID;
     Bitmap image;
     String name;
     int edit;
@@ -11,11 +12,20 @@ public class post {
     public post() {
     }
 
-    public post(Bitmap image, String name, int edit, int delete) {
+    public post(String id, Bitmap image, String name, int edit, int delete) {
+        ID = id;
         this.image = image;
         this.name = name;
         this.edit = edit;
         this.delete = delete;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public String getName() {

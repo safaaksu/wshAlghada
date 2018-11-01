@@ -28,6 +28,7 @@ tools:context=".AddedRecipe">
         android:background="@android:color/transparent"
         android:contentDescription="@string/button"
         android:scaleType="fitXY"
+        android:onClick="back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
