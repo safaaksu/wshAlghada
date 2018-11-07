@@ -1,6 +1,5 @@
 package com.example.abodi.wshalghada;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.SharedPreferences;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,8 +22,8 @@ public class EditProfile1 extends AppCompatActivity {
     private EditText email;
     private EditText Password;
     private EditText Password1;
-    SharedPreferences sp =getSharedPreferences("login", Context.MODE_PRIVATE);
-    String userLogin = sp.getString("username",null);
+    //SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
+    //String userLogin = sp.getString("username",null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +50,8 @@ public class EditProfile1 extends AppCompatActivity {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
             stmt = con.createStatement();
-
-            sql = "SELECT * FROM user WHERE Username='"+userLogin+"'";
+////////////////
+            sql = "SELECT * FROM user WHERE Username='Mona'";
             ResultSet resultSet  = stmt.executeQuery(sql);
 
             while (resultSet.next()) {
@@ -92,8 +90,8 @@ public class EditProfile1 extends AppCompatActivity {
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
                 stmt = con.createStatement();
-
-                 String sql = "UPDATE user SET Password='"+pass+"' , DisplayName='"+displayname+"' , Email='"+Email+"' WHERE Username='"+userLogin+"'";
+//////////////////////
+                 String sql = "UPDATE user SET Password='"+pass+"' , DisplayName='"+displayname+"' , Email='"+Email+"' WHERE Username='Mona";
                 int result = stmt.executeUpdate(sql);
                 if (result == 1) {
                     Toast done = Toast.makeText(EditProfile1.this, " تم التعديل ", Toast.LENGTH_SHORT);
@@ -169,7 +167,7 @@ public class EditProfile1 extends AppCompatActivity {
     }
 
 
-    public void imageButton(View view) {
+    public void back(View view) {
         Intent intent = new Intent(this, ProfileFragment.class);
         startActivity(intent);
     }

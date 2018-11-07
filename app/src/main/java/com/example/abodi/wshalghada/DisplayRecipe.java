@@ -23,6 +23,7 @@ import java.sql.Statement;
 
 public class DisplayRecipe extends AppCompatActivity {
 
+    private String recipeID;
     private TextView recipeName;
     private TextView userName;
     private TextView dateON;
@@ -35,16 +36,20 @@ public class DisplayRecipe extends AppCompatActivity {
     private Button favorite;
     int fav=0;
     int numofF;
-    SharedPreferences sp =getSharedPreferences("login", Context.MODE_PRIVATE);
-    String userLogin = sp.getString("username",null);
     private Blob blobimage;
     private byte[] bytesimage;
     private Bitmap bitmap;
+
+    SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
+    String userLogin = sp.getString("username",null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_recipe);
+
+        Bundle bundle = getIntent().getExtras();
+        recipeID = bundle.getString("ID");
 
         recipeName = (TextView) findViewById(R.id.recipeName);
         userName = (TextView) findViewById(R.id.userName);
@@ -74,8 +79,7 @@ public class DisplayRecipe extends AppCompatActivity {
             stmt = con.createStatement();
             stmt1 = con.createStatement();
 
-            /////////////////RecipeID!!!!!!!!
-            sql = "SELECT * FROM recipe WHERE RecipeID = '1' ";
+            sql = "SELECT * FROM recipe WHERE RecipeID = '"+recipeID+"' ";
             resultSet = stmt.executeQuery(sql);
 
             while (resultSet.next()) {
@@ -94,8 +98,7 @@ public class DisplayRecipe extends AppCompatActivity {
                 numofF=resultSet.getInt("NumOfF");
             }
 
-            /////////////////RecipeID
-            sql1 = "SELECT * FROM contain WHERE RecipeID = '1'";
+            sql1 = "SELECT * FROM contain WHERE RecipeID = '"+recipeID+"'";
             ResultSet resultContain = stmt.executeQuery(sql1);
             while (resultContain.next()) {
                 IngredientList = IngredientList.concat(resultContain.getString("Number")+" ");
@@ -108,8 +111,7 @@ public class DisplayRecipe extends AppCompatActivity {
             }
             ingredients.setText(IngredientList);
 
-            /////////////////RecipeID!!!!!!!!
-            sql3 = "SELECT * FROM favor WHERE Username='"+userLogin+"' AND RecipeID= '1' ";
+            sql3 = "SELECT * FROM favor WHERE Username='"+userLogin+"' AND RecipeID= '"+recipeID+"' ";
             resultSet2 = stmt.executeQuery(sql3);
             int isthere=0;
             while (resultSet2.next()) {
@@ -160,13 +162,11 @@ public class DisplayRecipe extends AppCompatActivity {
             stmt = con.createStatement();
 
             if(fav == 0) {
-                /////////////////RecipeID!!!!!!!!
-                sql1 = "INSERT INTO favor (Username, RecipeID) VALUES ('"+userLogin+"','1')";
+                sql1 = "INSERT INTO favor (Username, RecipeID) VALUES ('"+userLogin+"','"+recipeID+"')";
                 result1 = stmt.executeUpdate(sql1);
                 numofF++;
                 if (result1 == 1) {
-                    /////////////////RecipeID!!!!!!!!
-                    sql2 = "UPDATE recipe SET NumOfF = '"+numofF+"' WHERE RecipeID = '1' ";
+                    sql2 = "UPDATE recipe SET NumOfF = '"+numofF+"' WHERE RecipeID = '"+recipeID+"' ";
                     result2 = stmt.executeUpdate(sql2);
                     if (result2 == 1) {
                         addToFavorite.setText("إلغاء التفضيل");
@@ -176,13 +176,11 @@ public class DisplayRecipe extends AppCompatActivity {
                 }
            }
             else{
-                /////////////////RecipeID!!!!!!!!
-                sql1 = "DELETE FROM favor WHERE Username='"+userLogin+"' AND RecipeID= '1' ";
+                sql1 = "DELETE FROM favor WHERE Username='"+userLogin+"' AND RecipeID= '"+recipeID+"' ";
                 result1 = stmt.executeUpdate(sql1);
                 numofF--;
                 if (result1 == 1) {
-                    /////////////////RecipeID!!!!!!!!
-                    sql2 = "UPDATE recipe SET NumOfF= '"+numofF+"' WHERE RecipeID = '1' ";
+                    sql2 = "UPDATE recipe SET NumOfF= '"+numofF+"' WHERE RecipeID = '"+recipeID+"' ";
                     result2 = stmt.executeUpdate(sql2);
                     if (result2 == 1) {
                         addToFavorite.setText("إضافة الى مفضلتي");

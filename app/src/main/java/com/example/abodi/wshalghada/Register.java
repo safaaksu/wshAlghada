@@ -3,11 +3,13 @@ package com.example.abodi.wshalghada; //ok
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
+    import android.content.SharedPreferences;
+    import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.provider.Settings;
+    import android.preference.PreferenceManager;
+    import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -27,6 +29,8 @@ import java.security.NoSuchAlgorithmException;
        // check password
         //private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"; //ok
 
+        static SharedPreferences getSharedPreferences(Context context){
+            return PreferenceManager.getDefaultSharedPreferences(context); }
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
