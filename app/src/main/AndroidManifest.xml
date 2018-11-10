@@ -28,8 +28,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".RestorePassword" />
         <activity android:name=".EditRecipe" />
-
-        <activity android:name=".AddedRecipe" />
+        <activity android:name=".DisplayRecipe" />
     </application>
 
 </manifest>

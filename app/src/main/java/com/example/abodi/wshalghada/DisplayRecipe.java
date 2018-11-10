@@ -40,8 +40,8 @@ public class DisplayRecipe extends AppCompatActivity {
     private byte[] bytesimage;
     private Bitmap bitmap;
 
-    SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
-    String userLogin = sp.getString("username",null);
+    //SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
+    //String userLogin = sp.getString("username",null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +111,7 @@ public class DisplayRecipe extends AppCompatActivity {
             }
             ingredients.setText(IngredientList);
 
-            sql3 = "SELECT * FROM favor WHERE Username='"+userLogin+"' AND RecipeID= '"+recipeID+"' ";
+            sql3 = "SELECT * FROM favor WHERE Username='Mona' AND RecipeID= '"+recipeID+"' ";
             resultSet2 = stmt.executeQuery(sql3);
             int isthere=0;
             while (resultSet2.next()) {
@@ -162,7 +162,7 @@ public class DisplayRecipe extends AppCompatActivity {
             stmt = con.createStatement();
 
             if(fav == 0) {
-                sql1 = "INSERT INTO favor (Username, RecipeID) VALUES ('"+userLogin+"','"+recipeID+"')";
+                sql1 = "INSERT INTO favor (Username, RecipeID) VALUES ('Mona','"+recipeID+"')";
                 result1 = stmt.executeUpdate(sql1);
                 numofF++;
                 if (result1 == 1) {
@@ -176,7 +176,7 @@ public class DisplayRecipe extends AppCompatActivity {
                 }
            }
             else{
-                sql1 = "DELETE FROM favor WHERE Username='"+userLogin+"' AND RecipeID= '"+recipeID+"' ";
+                sql1 = "DELETE FROM favor WHERE Username='Mona' AND RecipeID= '"+recipeID+"' ";
                 result1 = stmt.executeUpdate(sql1);
                 numofF--;
                 if (result1 == 1) {

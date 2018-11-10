@@ -34,8 +34,8 @@ public class AddedRecipe extends AppCompatActivity {
     private String RecipeName;
     private String RecipeID;
 
-    SharedPreferences sp =getSharedPreferences("login", Context.MODE_PRIVATE);
-    String userLogin = sp.getString("username",null);
+    //SharedPreferences sp =getSharedPreferences("login", Context.MODE_PRIVATE);
+    //String userLogin = sp.getString("username",null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class AddedRecipe extends AppCompatActivity {
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection(DBConnection.urlstring, DBConnection.username, DBConnection.password);
                 stmt = con.createStatement();
-                sql = "SELECT RecipeID, Photo, RecipeName FROM Recipe WHERE Username='"+userLogin+"'";
+                sql = "SELECT RecipeID, Photo, RecipeName FROM Recipe WHERE Username='Mona'";
                 ResultSet resultSet  = stmt.executeQuery(sql);
 
                 while (resultSet.next()) {
