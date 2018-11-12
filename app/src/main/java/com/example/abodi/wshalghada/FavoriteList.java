@@ -1,7 +1,9 @@
 package com.example.abodi.wshalghada;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -10,7 +12,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,9 +34,12 @@ import java.util.ArrayList;
 
 public class FavoriteList extends Fragment {
     ResultSet resultSet = null;
+
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<byte[]> mImageUrls = new ArrayList<>();
     private Blob imageBlob;
+    private RecyclerView recyclerView;
+    private String URL=DBConnection.serverSideURL+"FavoriteList";
     public FavoriteList() {
         // Required empty public constructor
     }
@@ -34,38 +50,107 @@ public class FavoriteList extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_favorite_list, container, false);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DBConnection.createConnection(); //establishing connection
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                    .permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-            con = DriverManager.getConnection("jdbc:mysql://172.20.10.14/wshalghada", "root", null);
-            Statement statement = con.createStatement(); //Statement is used to write queries. Read more about it.
-            resultSet = statement.executeQuery("SELECT RecipeName , Photo FROM recipe, favor WHERE favor.RecipeID=recipe.RecipeID"); //Here table name is users and userName,password are columns. fetching all the records and storing in a resultSet.
-            while (resultSet.next()) // Until next row is present otherwise it return false
-            {
-                imageBlob=resultSet.getBlob("Photo");
-                mImageUrls.add(imageBlob.getBytes(1,(int)imageBlob.length()));
-                mNames.add(resultSet.getString("RecipeName"));}
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true);
-        RecyclerView recyclerView = v.findViewById(R.id.favoriteList);
+        recyclerView = v.findViewById(R.id.favoriteList);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getActivity(), mNames, mImageUrls);
-        recyclerView.setAdapter(adapter);
-
+        FavoriteList.GetXMLTask task = new FavoriteList.GetXMLTask();
+        task.execute(URL);
         return v;
 
     }
+
+    private class GetXMLTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute(){}
+        @Override
+        protected String doInBackground(String... urls) {
+            String output = null;
+
+            for (String url : urls) {
+                output = getOutputFromUrl(url);
+            }
+            return output;
+        }
+
+        private String getOutputFromUrl(String url) {
+            StringBuffer output = new StringBuffer("");
+            try {
+                InputStream stream = getHttpConnection(url);
+                BufferedReader buffer = new BufferedReader(
+                        new InputStreamReader(stream));
+                String s = "";
+                while ((s = buffer.readLine()) != null)
+                    output.append(s);
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            return output.toString();
+        }
+
+        // Makes HttpURLConnection and returns InputStream
+        private InputStream getHttpConnection(String urlString)
+                throws IOException {
+            InputStream stream = null;
+            java.net.URL url = new URL(urlString);
+            URLConnection connection = url.openConnection();
+            SharedPreferences sp=getActivity().getSharedPreferences("login",Context.MODE_PRIVATE);
+
+          String postParameters="username="+sp.getString("username",null);
+
+            try {
+                HttpURLConnection httpConnection = (HttpURLConnection) connection;
+                httpConnection.setRequestMethod("POST");
+                httpConnection.setDoOutput(true);
+                httpConnection.setDoInput(true);
+                httpConnection.setFixedLengthStreamingMode(
+                        postParameters.getBytes().length);
+                PrintWriter out = new PrintWriter(httpConnection.getOutputStream());
+                out.print(postParameters);
+                out.close();
+                httpConnection.connect();
+
+                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    stream = httpConnection.getInputStream();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return stream;
+        }
+
+        @Override
+        protected void onPostExecute(String output) {
+            if(output.equals("there is no FavoriteRecipes")){
+                Toast.makeText(getActivity(), "لا توجد وصفات في مفضلتك",
+                        Toast.LENGTH_LONG).show();}
+
+            else{
+                RecipeC[] FavoriteRecipes;
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    FavoriteRecipes= (RecipeC[]) objectMapper.readValue(output, RecipeC[].class);
+                    if(FavoriteRecipes!=null)
+
+                        for (int j = 0; j <FavoriteRecipes.length ; j++) {
+                            mImageUrls.add(FavoriteRecipes[j].getRimage());
+                            mNames.add(FavoriteRecipes[j].getRname());
+                        }
+                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(getActivity(), mNames, mImageUrls);
+                    recyclerView.setAdapter(adapter);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+        }
     }
 
 
 
+
+
+}
