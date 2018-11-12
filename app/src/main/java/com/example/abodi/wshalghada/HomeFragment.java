@@ -14,12 +14,12 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
       View view=  inflater.inflate(R.layout.fragment_home, container, false);
-
         getFragmentManager().beginTransaction().replace(R.id.frame_popular,new PopularList()).commit();
-        getFragmentManager().beginTransaction().replace(R.id.frame_recom,new RecommendedList()).commit();
+       getFragmentManager().beginTransaction().replace(R.id.frame_recom,new RecommendedList()).commit();
         getFragmentManager().beginTransaction().replace(R.id.frame_fav,new FavoriteList()).commit();
+
+
         return view;
     }
-
 
 }
