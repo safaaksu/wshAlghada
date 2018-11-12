@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.BufferedReader;
@@ -37,6 +38,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,7 +46,7 @@ import java.util.Set;
 public class SearchByIngredents extends Fragment {
     ResultSet resultSet = null;
 
-    private ArrayList<String> IngCategory = new ArrayList<>();
+    private ArrayList<String>IngCategory;
     private ArrayList<String[]> Ingredents = new ArrayList<>();
     private RecyclerView recyclerView;
     private TextView TVItemSelected;
@@ -152,16 +154,16 @@ public class SearchByIngredents extends Fragment {
                     Toast.LENGTH_LONG).show();}
 
             else{
-                Ingredent[] categIng;
+              //  Ingredent[] categIng;
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
-                    categIng= (Ingredent[]) objectMapper.readValue(output, Ingredent[].class);
-                    if(categIng!=null)
-
-                        for (int j = 0; j <categIng.length ; j++) {
-                            IngCategory.add(categIng[j].getCategory());
-                            Ingredents.add(categIng[j].getIngredents());
-                        }
+                    HashMap<String, String []> categoryIng=new  HashMap<>();
+                    categoryIng= objectMapper.readValue(output, new TypeReference<HashMap<String,  String []>>() {});
+                    if(!categoryIng.isEmpty()){
+                        IngCategory= new ArrayList<String> ( categoryIng.keySet());
+                        for (String s : IngCategory)
+                            Ingredents.add(categoryIng.get(s));
+                    }
 RecyclerViewAdapterSearch adapter = new RecyclerViewAdapterSearch(getActivity(),TVItemSelected, IngCategory, Ingredents);
         recyclerView.setAdapter(adapter);
 
@@ -180,4 +182,3 @@ RecyclerViewAdapterSearch adapter = new RecyclerViewAdapterSearch(getActivity(),
 
 
 }
-
